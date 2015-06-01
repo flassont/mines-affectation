@@ -1,0 +1,66 @@
+/* line 5, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+:root {
+	font-family: "Lato", Arial, sans-serif; }
+
+/* line 9, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+:root, html, body, .height-full {
+	height: 100%; }
+
+/* line 13, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar {
+	background: #06F;
+	border: none;
+	color: #FFF;
+	height: 100%;
+	padding: 0; }
+/* line 20, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav {
+	background: #06F;
+	padding-top: 25px; }
+/* line 24, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav ul.menu {
+	padding: 0; }
+/* line 27, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav ul.menu .menu-item {
+	transition: background-color .25s ease-in, color .1s ease-in; }
+/* line 34, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav ul.menu .menu-item:hover, #sidebar nav ul.menu .menu-item.active {
+	background: #FFF; }
+/* line 36, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav ul.menu .menu-item:hover .menu-item-link, #sidebar nav ul.menu .menu-item.active .menu-item-link {
+	color: #000; }
+/* line 41, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav ul.menu .menu-item:hover {
+	transition: background-color .25s ease-in, color .1s ease-in; }
+/* line 45, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+#sidebar nav ul.menu .menu-item .menu-item-link {
+	color: #FFF;
+	width: 100%;
+	padding: .5rem 4%;
+	display: inline-block;
+	text-decoration: none; }
+
+/** User panel */
+/* line 55, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+.user {
+	padding: 50px 3% 50px 3%;
+	background: #09F; }
+/* line 59, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+.user .user-logo {
+	padding: 0; }
+/* line 62, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+.user .user-logo .user-logo-img {
+	background: #FFF;
+	border-radius: 50%;
+	box-sizing: border-box;
+	padding: 15%;
+	width: 100%; }
+/* line 71, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
+.user .user-name {
+	font-size: 2em; }
+
+/*# sourceMappingURL=style.css.map */
+
+#content {
+	overflow: auto;
+}
