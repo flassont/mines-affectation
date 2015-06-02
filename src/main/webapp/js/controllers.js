@@ -7,14 +7,14 @@
     /**
      * Controller for UV screen
      */
-    app.controller('UvCtrl', ['$scope', '$modal', 'emn.uv', function($scope, $modal, Uv) {
+    app.controller('emn.controller.uvCtrl', ['$scope', '$modal', 'emn.model.uv', function($scope, $modal, Uv) {
         $scope.uvs = [];
         $scope.model = new Uv();
 
         $scope.open = function() {
             var modalInstance = $modal.open({
                 templateUrl: 'uv-add.html',
-                controller: 'UvModalInstanceCtrl'
+                controller: 'emn.controller.uvCtrl.modalInstanceCtrl'
             });
 
             modalInstance.result.then(function(uv) {
@@ -29,7 +29,7 @@
     /**
      * Controller for UV modal window
      */
-    app.controller('UvModalInstanceCtrl', ['$scope', '$modalInstance', 'emn.uv', function($scope, $modalInstance, Uv) {
+    app.controller('emn.controller.uvCtrl.modalInstanceCtrl', ['$scope', '$modalInstance', 'emn.model.uv', function($scope, $modalInstance, Uv) {
         $scope.model = new Uv();
 
         $scope.ok = function() {
@@ -44,7 +44,7 @@
     /**
      * Controller for the sidebar menu
      */
-    app.controller('MenuCtrl', ['$scope', '$location', 'emn.menu', function($scope, $location, menu) {
+    app.controller('emn.controller.menuCtrl', ['$scope', '$location', 'emn.service.menu', function($scope, $location, menu) {
         'use strict';
 
         // Mock for user data

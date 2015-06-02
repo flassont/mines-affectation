@@ -10,7 +10,7 @@
 			templateUrl: 'partials/home.html'
 		}).when('/uv', {
 			templateUrl: 'partials/uv.html',
-			controller: 'UvCtrl'
+			controller: 'emn.controller.uvCtrl'
 		}).otherwise({
 			redirectTo: '/'
 		})

@@ -5,7 +5,7 @@
 	 * UV model
 	 */
 	// TODO Replace with $resource call
-	app.factory('emn.uv', function() {
+	app.factory('emn.model.uv', function() {
 		return function() {
 			this.name = '';
 			this.nbCours = 0;
@@ -15,7 +15,7 @@
 	/**
 	 * Provider for app menu.
 	 */
-	app.provider('emn.menu', function () {
+	app.provider('emn.service.menu', function () {
 		var self = this;
 
 		/**
