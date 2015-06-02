@@ -5,17 +5,29 @@
 	 * UV model
 	 */
 	// TODO Replace with $resource call
-	app.factory('emn.uv', function() {
+	app.factory('emn.model.uv', function() {
 		return function() {
 			this.name = '';
-			this.nbCours = 0;
 		};
 	});
 
 	/**
+	 * Module model
+	 */
+	app.factory('emn.model.module', function() {
+		return function () {
+			this.name = '';
+			this.nbIntervenants = 0;
+			this.nbGroupes = 0;
+			this.nbCours = 0;
+			this.nbTD = 0;
+		}
+	})
+
+	/**
 	 * Provider for app menu.
 	 */
-	app.provider('emn.menu', function () {
+	app.provider('emn.service.menu', function () {
 		var self = this;
 
 		/**
@@ -27,6 +39,9 @@
 			items: [{
 				template: 'UVs',
 				route: '#/uv'
+			}, {
+				template: 'Modules',
+				route: '#/module'
 			}]
 		};
 

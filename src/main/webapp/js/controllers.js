@@ -1,21 +1,56 @@
 (function(app) {
     'use strict';
 
-    app.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window', '$routeParams','$location', 'Auth', 'CategIntervenants', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, $location, Auth, CategIntervenants ) {
+    /**
+     * Controller for Module screen
+     */
+    app.controller('emn.controller.moduleCtrl', ['$scope', '$modal', 'emn.model.module', function($scope, $modal, Module) {
+        $scope.modules = [];
+        $scope.model = new Module();
 
+        $scope.open = function() {
+            var modalInstance = $modal.open({
+                templateUrl: 'module-add.html',
+                controller: 'emn.controller.moduleCtrl.modalInstanceCtrl'
+            });
+
+            modalInstance.result.then(function (module) {
+               // TODO Save once service will be available
+                console.log(JSON.stringify(module));
+            }, function (reason){
+                console.log(reason);
+            });
+        }
+    }]);
+
+    /**
+     * Controller for Module modal window
+     */
+    app.controller('emn.controller.moduleCtrl.modalInstanceCtrl', ['$scope', '$modalInstance', 'emn.model.module', function($scope, $modalInstance, Module) {
+        $scope.model = new Module();
+        // TODO Replace once service will be available
+        $scope.uvs = [{ name: 'Test'}];
+
+        $scope.ok = function() {
+            $modalInstance.close($scope.model);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('Cancelled');
+        };
     }]);
 
     /**
      * Controller for UV screen
      */
-    app.controller('UvCtrl', ['$scope', '$modal', 'emn.uv', function($scope, $modal, Uv) {
+    app.controller('emn.controller.uvCtrl', ['$scope', '$modal', 'emn.model.uv', function($scope, $modal, Uv) {
         $scope.uvs = [];
         $scope.model = new Uv();
 
         $scope.open = function() {
             var modalInstance = $modal.open({
                 templateUrl: 'uv-add.html',
-                controller: 'UvModalInstanceCtrl'
+                controller: 'emn.controller.uvCtrl.modalInstanceCtrl'
             });
 
             modalInstance.result.then(function(uv) {
@@ -30,7 +65,7 @@
     /**
      * Controller for UV modal window
      */
-    app.controller('UvModalInstanceCtrl', ['$scope', '$modalInstance', 'emn.uv', function($scope, $modalInstance, Uv) {
+    app.controller('emn.controller.uvCtrl.modalInstanceCtrl', ['$scope', '$modalInstance', 'emn.model.uv', function($scope, $modalInstance, Uv) {
         $scope.model = new Uv();
 
         $scope.ok = function() {
@@ -45,7 +80,7 @@
     /**
      * Controller for the sidebar menu
      */
-    app.controller('MenuCtrl', ['$scope', '$location', 'emn.menu', function($scope, $location, menu) {
+    app.controller('emn.controller.menuCtrl', ['$scope', '$location', 'emn.service.menu', function($scope, $location, menu) {
         'use strict';
 
         // Mock for user data
