@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- * Wish emited by a User for a Module
+ * Wish emited by a Utilisateur for a Module
  * Created by Florian on 29/05/2015.
  */
 @Entity

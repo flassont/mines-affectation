@@ -12,7 +12,7 @@ import java.util.Collection;
 public class Uv {
 	@Id
 	@GeneratedValue
-	private int id;
+	public int id;
 
 	/** List of Module composing this Uv */
 	@OneToMany(
