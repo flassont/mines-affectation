@@ -1,7 +1,6 @@
 (function(app) {
     'use strict';
 
-    app.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window', '$routeParams','$location', 'Auth', 'CategIntervenants', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, $location, Auth, CategIntervenants ) {
 
     }]);
 

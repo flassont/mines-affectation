@@ -6,10 +6,7 @@
 
 	// Defining routes
 	app.config(['$routeProvider', function($routeProvider) {
-		$routeProvider.when('/login', {
-			templateUrl: 'partials/login.html',
-			controller: 'LoginCtrl'
-		}).when('/', {
+		$routeProvider.when('/', {
 			templateUrl: 'partials/home.html'
 		}).when('/uv', {
 			templateUrl: 'partials/uv.html',
