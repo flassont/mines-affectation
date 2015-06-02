@@ -8,7 +8,6 @@
 	app.factory('emn.model.uv', function() {
 		return function() {
 			this.name = '';
-			this.nbCours = 0;
 		};
 	});
 
