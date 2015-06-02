@@ -1,0 +1,65 @@
+<h1 class="page-header">Modules</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="btn-toolbar col-xs-12 text-right">
+            <button class="btn btn-primary" data-ng-click="open()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="sr-only">Ajouter</span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="col-xs-12 table table-stripped table-hover table-responsive" data-ng-show="uvs.length">
+            <thead>
+            <tr>
+                <th data-ng-repeat="key in model.keys">{{key}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="uv in uvs track by $index">
+                <td data-ng-repeat="key in model.keys">{{uv[key]}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="col-xs-12" data-ng-show="!uvs.length">
+            <p>Aucun module actuellement enregistré</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="module-add.html">
+    <div class="modal-header panel-heading">
+        <h3 class="modal-title">Ajouter un module</h3>
+    </div>
+    <form class="modal-body">
+        <div class="form-group">
+            <label for="module-intitule" class="sr-only control-label">Intitulé</label>
+            <input type="text" id="module-intitule" class="form-control input-lg" placeholder="Intitulé" data-ng-model="model.name" required />
+        </div>
+        <div class="form-group">
+            <label for="module-uv" class="control-label">UV</label>
+            <select id="module-uv" class="form-control input-lg" data-ng-model="model.uv" data-ng-options="uv.name for uv in uvs" required></select>
+        </div>
+        <div class="form-group">
+            <label for="module-intervenant" class="control-label">Intervenants</label>
+            <input type="number" id="module-intervenant" class="form-control input-lg" placeholder="Intervenants" data-ng-model="model.nbIntervenants" required />
+        </div>
+        <div class="form-group">
+            <label for="module-cours" class="control-label">Cours(h)</label>
+            <input type="number" id="module-cours" class="form-control input-lg" placeholder="Cours(h)" data-ng-model="model.nbCours" required />
+        </div>
+        <div class="form-group">
+            <label for="module-td" class="control-label">TD/TP(h)</label>
+            <input type="number" id="module-td" class="form-control input-lg" placeholder="TD/TP(h)" data-ng-model="model.nbTD" required />
+        </div>
+        <div class="form-group">
+            <label for="module-groupe" class="control-label">Groupes</label>
+            <input type="number" id="module-groupe" class="form-control input-lg" placeholder="Groupes" ng-model="model.nbGroupes" required />
+        </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-primary" data-ng-click="ok()" value="Ajouter" />
+            <button type="reset" class="btn btn-default" data-ng-click="cancel()">Annuler</button>
+        </div>
+    </form>
+</script>

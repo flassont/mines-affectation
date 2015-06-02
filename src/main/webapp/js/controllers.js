@@ -1,7 +1,43 @@
 (function(app) {
     'use strict';
 
+    /**
+     * Controller for Module screen
+     */
+    app.controller('emn.controller.moduleCtrl', ['$scope', '$modal', 'emn.model.module', function($scope, $modal, Module) {
+        $scope.modules = [];
+        $scope.model = new Module();
 
+        $scope.open = function() {
+            var modalInstance = $modal.open({
+                templateUrl: 'module-add.html',
+                controller: 'emn.controller.moduleCtrl.modalInstanceCtrl'
+            });
+
+            modalInstance.result.then(function (module) {
+               // TODO Save once service will be available
+                console.log(JSON.stringify(module));
+            }, function (reason){
+                console.log(reason);
+            });
+        }
+    }]);
+
+    /**
+     * Controller for Module modal window
+     */
+    app.controller('emn.controller.moduleCtrl.modalInstanceCtrl', ['$scope', '$modalInstance', 'emn.model.module', function($scope, $modalInstance, Module) {
+        $scope.model = new Module();
+        // TODO Replace once service will be available
+        $scope.uvs = [{ name: 'Test'}];
+
+        $scope.ok = function() {
+            $modalInstance.close($scope.model);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('Cancelled');
+        };
     }]);
 
     /**

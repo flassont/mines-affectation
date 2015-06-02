@@ -11,6 +11,9 @@
 		}).when('/uv', {
 			templateUrl: 'partials/uv.html',
 			controller: 'emn.controller.uvCtrl'
+		}).when('/module', {
+			templateUrl: 'partials/module.html',
+			controller: 'emn.controller.moduleCtrl'
 		}).otherwise({
 			redirectTo: '/'
 		})
