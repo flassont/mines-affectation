@@ -1,1 +1,1 @@
-insert into uv(id) VALUES (777)
+insert into uv(id, name) VALUES (777, 'UV Test')

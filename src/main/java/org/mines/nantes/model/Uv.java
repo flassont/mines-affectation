@@ -15,7 +15,7 @@ public class Uv {
 	public int id;
 
 	/** Name of the UV */
-	private String nameUv;
+	private String name;
 
 	/** List of Module composing this Uv */
 	@OneToMany(
@@ -28,7 +28,8 @@ public class Uv {
 	@ManyToMany(mappedBy = "uvs")
 	private Collection<Formation> formations;
 
-	public String toString() {
-		return "UV n°" + id + " : "+ nameUv;
-	}
+	public String getName() {	return this.name;	}
+
+	public void setName(String n) {	this.name = n;	}
+
 }
