@@ -38,10 +38,10 @@
 			/** Default items in the menu */
 			items: [{
 				template: 'UVs',
-				route: '#/uv'
+				route: 'uv'
 			}, {
 				template: 'Modules',
-				route: '#/module'
+				route: 'module'
 			}]
 		};
 
