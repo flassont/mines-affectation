@@ -14,6 +14,9 @@ public class Uv {
 	@GeneratedValue
 	public int id;
 
+	/** Name of the UV */
+	private String nameUv;
+
 	/** List of Module composing this Uv */
 	@OneToMany(
 			cascade = CascadeType.ALL,
@@ -24,4 +27,8 @@ public class Uv {
 	/** List of Formation following this Uv */
 	@ManyToMany(mappedBy = "uvs")
 	private Collection<Formation> formations;
+
+	public String toString() {
+		return "UV n°" + id + " : "+ nameUv;
+	}
 }
