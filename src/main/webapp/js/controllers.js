@@ -43,8 +43,13 @@
     /**
      * Controller for UV screen
      */
-    app.controller('emn.controller.uvCtrl', ['$scope', '$modal', 'emn.model.uv', function($scope, $modal, Uv) {
+    app.controller('emn.controller.uvCtrl', ['$scope', '$timeout', '$modal', 'emn.model.uv', function($scope, $timeout, $modal, Uv) {
         $scope.uvs = [];
+        $timeout(function() {
+            Uv.query().then(function(uvs) {
+                $scope.uvs = uvs;
+            });
+        });
         $scope.model = new Uv();
 
         $scope.open = function() {
