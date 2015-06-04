@@ -23,4 +23,15 @@
 			controller: 'emn.controller.moduleCtrl'
 		});
 	}]);
+
+	// Configuring Restangular's base URL for all REST calls
+	app.run(['$location', 'Restangular', function ($location, Restangular) {
+		//Extracting root from absolute url
+		var baseUrl = $location.absUrl();
+		var regex = new RegExp($location.protocol() + ':[/]+[^/]*(/[^#?]*)');
+		baseUrl = baseUrl.match(regex)[0] || ''; // get first positive result
+		baseUrl = baseUrl + '/rest/';
+
+		Restangular.setBaseUrl(baseUrl);
+	}]);
 }(angular));
