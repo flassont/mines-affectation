@@ -24,9 +24,8 @@ public class UVService {
     UvDAO uvDAO;
 
     @GET
-    @Path( "/all" )
     @Produces( MediaType.APPLICATION_JSON )
-    public Collection<Uv> getUV() {
+    public Collection<Uv> getAllUV() {
         Collection<Uv> listUv = uvDAO.getAllUV();
         return listUv;
     }
