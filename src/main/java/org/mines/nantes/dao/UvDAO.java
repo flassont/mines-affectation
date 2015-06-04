@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Created by mclaveau on 01/06/2015.
  */
+@Stateless
 public class UvDAO {
 
     @Inject

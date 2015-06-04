@@ -3,15 +3,14 @@ package org.mines.nantes.rest;
 import org.mines.nantes.dao.UvDAO;
 import org.mines.nantes.model.Uv;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.GenericEntity;
+import javax.validation.ConstraintViolationException;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.Collection;
 
 /**
@@ -19,6 +18,10 @@ import java.util.Collection;
  */
 @Path("/uv")
 public class UVService {
+
+    /** Hold local URI information (provided by JAX-RS) */
+    @Context
+    UriInfo uriInfo;
 
     @Inject
     UvDAO uvDAO;
@@ -41,4 +44,19 @@ public class UVService {
         return Response.ok(uv).build();
     }
 
+    @POST
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.TEXT_PLAIN )
+    public Response createUV(Uv uv) {
+        if(uv == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        try {
+            uvDAO.addUv(uv);
+            URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(uv.getId())).build();
+            return Response.created(uri).build();
+        } catch (ConstraintViolationException cve) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    }
 }
