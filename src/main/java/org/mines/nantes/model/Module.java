@@ -16,6 +16,8 @@ public class Module {
 	@GeneratedValue
 	private int id;
 
+	private String nom;
+
 	/** Hours of lessons */
 	private double hCours;
 
@@ -36,8 +38,12 @@ public class Module {
 	private Uv uv;
 
 	/** Wishes emitted for this Module */
-	@OneToMany(mappedBy = "module")
+	@OneToMany(mappedBy = "moduleWish")
 	private Collection<Wish> wishes;
+
+	/** Affectation emitted for this Module */
+	@OneToMany(mappedBy = "moduleAffectation")
+	private Collection<Affectation> affectations;
 
 	public int getId() {
 		return id;
@@ -81,11 +87,11 @@ public class Module {
 
 	public void setDateFin(Date dateFin) {	this.dateFin = dateFin;	}
 
-	public Uv getUv() {	return uv;	}
+	public String getNom() {
+		return nom;
+	}
 
-	public void setUv(Uv uv) {	this.uv = uv;	}
-
-	public Collection<Wish> getWishes() {	return wishes;	}
-
-	public void setWishes(Collection<Wish> wishes) {	this.wishes = wishes;	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 }

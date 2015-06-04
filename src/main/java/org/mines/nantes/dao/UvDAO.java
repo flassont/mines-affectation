@@ -25,7 +25,10 @@ public class UvDAO {
         Root<Uv> uv = criteria.from(Uv.class);
         criteria.select(uv);
         return entityManager.createQuery(criteria).getResultList();
+    }
 
+    public void addUv(Uv uv){
+        entityManager.persist(uv);
     }
 
 }

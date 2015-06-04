@@ -35,5 +35,5 @@ public class Utilisateur {
 	/** List of Roles this Utilisateur has been given access to */
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
-	private Set<UserRole> roles;
+	private Set<UtilisateurRole> roles;
 }
