@@ -12,24 +12,60 @@ import java.util.Collection;
 public class Uv {
 	@Id
 	@GeneratedValue
-	public int id;
+	private int id;
 
-	/** Name of the UV */
-	private String name;
+	private String nom;
+
+	@OneToOne
+	private Intervenant responsableUV;
 
 	/** List of Module composing this Uv */
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			mappedBy = "uv"
+			mappedBy = "uv",
+			fetch = FetchType.EAGER
 	)
 	private Collection<Module> modules;
 
 	/** List of Formation following this Uv */
-	@ManyToMany(mappedBy = "uvs")
+	@ManyToMany(
+			mappedBy = "uvs",
+			fetch = FetchType.EAGER)
 	private Collection<Formation> formations;
 
-	public String getName() {	return this.name;	}
+	public String getNom() {
+		return nom;
+	}
 
-	public void setName(String n) {	this.name = n;	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setResponsableUV(Intervenant responsableUV) {
+		this.responsableUV = responsableUV;
+	}
+
+	public Collection<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(Collection<Module> modules) {
+		this.modules = modules;
+	}
+
+	public Collection<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(Collection<Formation> formations) {
+		this.formations = formations;
+	}
 }

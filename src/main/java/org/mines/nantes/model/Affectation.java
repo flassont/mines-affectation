@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
  * Created by Florian on 29/05/2015.
  */
 @Entity
-public class Wish {
+public class Affectation {
 
 	@Id
 	@GeneratedValue
@@ -23,5 +23,5 @@ public class Wish {
 	private Intervenant intervenant;
 
 	@ManyToOne
-	private Module moduleWish;
+	private Module moduleAffectation;
 }
