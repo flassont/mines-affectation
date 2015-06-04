@@ -30,4 +30,15 @@ public class UVService {
         return listUv;
     }
 
+    @GET
+    @Path("{id}")
+    @Produces( MediaType.APPLICATION_JSON )
+    public Response getUv(@PathParam("id") int id) {
+        Uv uv = uvDAO.getUvById(id);
+        if(uv == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(uv).build();
+    }
+
 }
