@@ -32,7 +32,6 @@ public class Utilisateur {
 	@NotBlank
 	private String password;
 
-	@NotBlank
 	private boolean admin;
 
 	/** List of Roles this Utilisateur has been given access to */
