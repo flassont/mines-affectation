@@ -2,6 +2,7 @@ package org.mines.nantes.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * @summary Unit part of UV.
@@ -23,6 +24,12 @@ public class Module {
 
 	/** Number of groups following this Module */
 	private int nbGroupes;
+
+	/** Start date of the period during which the module takes place */
+	private Date dateDebut;
+
+	/** End date of the period during which the module takes place */
+	private Date dateFin;
 
 	/** Parent UV for the Module */
 	@ManyToOne
@@ -63,4 +70,22 @@ public class Module {
 	public void setNbGroupes(int nbGroupes) {
 		this.nbGroupes = nbGroupes;
 	}
+
+	public Date getDateDebut() { return dateDebut;	}
+
+	public void setDateDebut(Date dateDebut) {	this.dateDebut = dateDebut;	}
+
+	public double gethCours() {	return hCours;	}
+
+	public Date getDateFin() {	return dateFin;	}
+
+	public void setDateFin(Date dateFin) {	this.dateFin = dateFin;	}
+
+	public Uv getUv() {	return uv;	}
+
+	public void setUv(Uv uv) {	this.uv = uv;	}
+
+	public Collection<Wish> getWishes() {	return wishes;	}
+
+	public void setWishes(Collection<Wish> wishes) {	this.wishes = wishes;	}
 }
