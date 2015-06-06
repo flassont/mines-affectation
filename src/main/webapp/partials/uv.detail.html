@@ -1,0 +1,24 @@
+<h1 class="page-header">Détails de l'UV {{ uv.nom }}</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Modules</h2>
+            </div>
+            <div class="panel-body" data-ng-hide="uv.modules.length">
+                <p>Aucun module n'est associé à cette UV.</p>
+            </div>
+            <table class="table table-stripped" data-ng-show="uv.modules.length">
+                <thead>
+                <th>Nom</th>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="module in uv.modules track by module.id">
+                    <td>{{ module.nom }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

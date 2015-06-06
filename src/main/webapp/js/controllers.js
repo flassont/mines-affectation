@@ -47,6 +47,14 @@
     }]);
 
     /**
+     * Controller for UV detail screen
+     * UV comes from state's resolve object
+     */
+    app.controller('emn.controller.uvCtrl.detailCtrl', ['$scope', 'uv', function($scope, uv) {
+        $scope.uv = uv;
+    }]);
+
+    /**
      * Controller for the sidebar menu
      */
     app.controller('emn.controller.menuCtrl', ['$scope', '$location', 'emn.service.menu', function($scope, $location, menu) {

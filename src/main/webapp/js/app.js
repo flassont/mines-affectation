@@ -17,7 +17,16 @@
 			url: '/uv',
 			templateUrl: 'partials/uv.html',
 			controller: 'emn.controller.uvCtrl'
-		})
+		}).state('uv-detail', {
+			url: '/uv/:uvId',
+			templateUrl: 'partials/uv.detail.html',
+			controller: 'emn.controller.uvCtrl.detailCtrl',
+			resolve: {
+				uv: ['$stateParams', 'emn.model.uv', function($stateParams, uvModel) {
+					return uvModel.get($stateParams.uvId);
+				}]
+			}
+		});
 	}]);
 
 	// Configuring Restangular's base URL for all REST calls
