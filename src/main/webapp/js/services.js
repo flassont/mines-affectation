@@ -17,7 +17,7 @@
 			};
 		};
 		UserFactory.query = user.getList;
-		UserFactory.get = user.one;
+		UserFactory.get = user.get;
 		UserFactory.put = user.put;
 		UserFactory.post = user.post;
 		UserFactory.delete = user.delete;
