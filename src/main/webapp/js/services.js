@@ -5,11 +5,25 @@
 	 * UV model
 	 */
 	// TODO Replace with $resource call
-	app.factory('emn.model.uv', function() {
-		return function() {
-			this.name = '';
+	app.factory('emn.model.uv', ['Restangular', function(Restangular) {
+		var user = Restangular.all('uv');
+
+		function UserFactory() {
+			function UserModel() {
+				this.id = 0;
+				this.nom = '';
+				this.module = [];
+				this.formations = [];
+			};
 		};
-	});
+		UserFactory.query = user.getList;
+		UserFactory.get = user.get;
+		UserFactory.put = user.put;
+		UserFactory.post = user.post;
+		UserFactory.delete = user.delete;
+
+		return UserFactory;
+	}]);
 
 	/**
 	 * Module model
@@ -38,10 +52,10 @@
 			/** Default items in the menu */
 			items: [{
 				template: 'UVs',
-				route: '#/uv'
+				route: 'uv'
 			}, {
 				template: 'Modules',
-				route: '#/module'
+				route: 'module'
 			}]
 		};
 

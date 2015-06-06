@@ -2,50 +2,12 @@
     'use strict';
 
     /**
-     * Controller for Module screen
-     */
-    app.controller('emn.controller.moduleCtrl', ['$scope', '$modal', 'emn.model.module', function($scope, $modal, Module) {
-        $scope.modules = [];
-        $scope.model = new Module();
-
-        $scope.open = function() {
-            var modalInstance = $modal.open({
-                templateUrl: 'module-add.html',
-                controller: 'emn.controller.moduleCtrl.modalInstanceCtrl'
-            });
-
-            modalInstance.result.then(function (module) {
-               // TODO Save once service will be available
-                console.log(JSON.stringify(module));
-            }, function (reason){
-                console.log(reason);
-            });
-        }
-    }]);
-
-    /**
-     * Controller for Module modal window
-     */
-    app.controller('emn.controller.moduleCtrl.modalInstanceCtrl', ['$scope', '$modalInstance', 'emn.model.module', function($scope, $modalInstance, Module) {
-        $scope.model = new Module();
-        // TODO Replace once service will be available
-        $scope.uvs = [{ name: 'Test'}];
-
-        $scope.ok = function() {
-            $modalInstance.close($scope.model);
-        };
-
-        $scope.cancel = function() {
-            $modalInstance.dismiss('Cancelled');
-        };
-    }]);
-
-    /**
      * Controller for UV screen
      */
-    app.controller('emn.controller.uvCtrl', ['$scope', '$modal', 'emn.model.uv', function($scope, $modal, Uv) {
+    app.controller('emn.controller.uvCtrl', ['$scope', '$timeout', '$modal', 'emn.model.uv', function($scope, $timeout, $modal, Uv) {
         $scope.uvs = [];
-        $scope.model = new Uv();
+        $scope.isLoading = 0;
+        $timeout(getUv);
 
         $scope.open = function() {
             var modalInstance = $modal.open({
@@ -54,12 +16,19 @@
             });
 
             modalInstance.result.then(function(uv) {
-                //TODO Save once service will be available
-                console.log(JSON.stringify(uv));
+                Uv.post(uv).then(getUv);
             }, function(reason) {
                 console.log(reason);
             });
         };
+
+        function getUv() {
+            $scope.isLoading++;
+            Uv.query().then(function(uvs) {
+                $scope.uvs = uvs;
+                $scope.isLoading--;
+            });
+        }
     }]);
 
     /**
@@ -75,6 +44,14 @@
         $scope.cancel = function() {
             $modalInstance.dismiss('Cancelled');
         };
+    }]);
+
+    /**
+     * Controller for UV detail screen
+     * UV comes from state's resolve object
+     */
+    app.controller('emn.controller.uvCtrl.detailCtrl', ['$scope', 'uv', function($scope, uv) {
+        $scope.uv = uv;
     }]);
 
     /**

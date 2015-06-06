@@ -27,7 +27,7 @@
 				<div class="row">
 					<ul class="menu col-xs-12 list-unstyled">
 						<li class="menu-item" data-ng-class="{active: isActive(item.route)}" data-ng-repeat="item in menu.items track by $index">
-							<a class="menu-item-link" data-ng-href="{{item.route}}">{{item.template}}</a>
+							<a class="menu-item-link" data-ui-sref="{{item.route}}">{{item.template}}</a>
 						</li>
 					</ul>
 				</div>
@@ -35,7 +35,7 @@
 		</div>
 
 		<section id="content" class="height-full col-sm-8 col-lg-10">
-			<div data-ng-view></div>
+			<div data-ui-view></div>
 		</section>
 
 		<!-- Load angularjs tes -->
@@ -43,9 +43,10 @@
 		<!-- Angular's directives for Bootstrap -->
 		<script src="js/libs/ui-bootstrap-0.13.0.min.js"></script>
 		<!-- Load angularjs routes -->
-		<script src="js/libs/angular-route.js"></script>
+		<script src="js/libs/angular-ui-router.min.js"></script>
 		<!-- Load angularjs-resource, which allows us to interact with REST resources as high level services -->
-		<script src="js/libs/angular-resource.js"></script>
+		<script src="js/libs/lodash.min.js"></script>
+		<script src="js/libs/angular-restangular.min.js"></script>
 
 		<!-- Load the application wide JS, such as route definitions -->
 		<script src="js/app.js"></script>
