@@ -45,12 +45,8 @@
      */
     app.controller('emn.controller.uvCtrl', ['$scope', '$timeout', '$modal', 'emn.model.uv', function($scope, $timeout, $modal, Uv) {
         $scope.uvs = [];
-        $timeout(function() {
-            Uv.query().then(function(uvs) {
-                $scope.uvs = uvs;
-            });
-        });
-        $scope.model = new Uv();
+        $scope.isLoading = 0;
+        $timeout(getUv);
 
         $scope.open = function() {
             var modalInstance = $modal.open({
@@ -59,12 +55,19 @@
             });
 
             modalInstance.result.then(function(uv) {
-                //TODO Save once service will be available
-                console.log(JSON.stringify(uv));
+                Uv.post(uv).then(getUv);
             }, function(reason) {
                 console.log(reason);
             });
         };
+
+        function getUv() {
+            $scope.isLoading++;
+            Uv.query().then(function(uvs) {
+                $scope.uvs = uvs;
+                $scope.isLoading--;
+            });
+        }
     }]);
 
     /**

@@ -19,12 +19,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr data-ng-repeat="uv in uvs track by $index">
+				<tr data-ng-repeat="uv in uvs track by uv.id">
 					<td>{{ uv.nom }}</td>
 				</tr>
 			</tbody>
 		</table>
-		<div class="col-xs-12" data-ng-show="!uvs.length">
+		<div class="col-xs-12" data-ng-show="!uvs.length && !isLoading">
 			<p>Aucune UV actuellement enregistrée</p>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 	<form class="modal-body">
 			<div class="form-group">
 				<label for="intitule" class="sr-only">Intitulé</label>
-				<input type="text" id="intitule" class="form-control input-lg" placeholder="Intitulé" ng-model="model.name" required autofocus/>
+				<input type="text" id="intitule" class="form-control input-lg" placeholder="Intitulé" ng-model="model.nom" required autofocus/>
 			</div>
 			<div class="modal-footer">
 				<input type="submit" class="btn btn-primary" data-ng-click="ok()" value="Ajouter" />
