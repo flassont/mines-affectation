@@ -17,11 +17,7 @@
 			url: '/uv',
 			templateUrl: 'partials/uv.html',
 			controller: 'emn.controller.uvCtrl'
-		}).state('module', {
-			url: '/module',
-			templateUrl: 'partials/module.html',
-			controller: 'emn.controller.moduleCtrl'
-		});
+		})
 	}]);
 
 	// Configuring Restangular's base URL for all REST calls
