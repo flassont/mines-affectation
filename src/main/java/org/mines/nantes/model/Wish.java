@@ -24,4 +24,6 @@ public class Wish {
 
 	@ManyToOne
 	private Module moduleWish;
+
+	private Boolean affecte;
 }
