@@ -17,7 +17,7 @@ public class Uv {
 	private String nom;
 
 	@OneToOne
-	private Intervenant responsableUV;
+	private Utilisateur responsableUV;
 
 	/** List of Module composing this Uv */
 	@OneToMany(
@@ -49,7 +49,7 @@ public class Uv {
 		this.id = id;
 	}
 
-	public void setResponsableUV(Intervenant responsableUV) {
+	public void setResponsableUV(Utilisateur responsableUV) {
 		this.responsableUV = responsableUV;
 	}
 

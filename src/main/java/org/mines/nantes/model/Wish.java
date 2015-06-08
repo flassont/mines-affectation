@@ -20,7 +20,7 @@ public class Wish {
 	private int year;
 
 	@ManyToOne
-	private Intervenant intervenant;
+	private Utilisateur intervenant;
 
 	@ManyToOne
 	private Module moduleWish;
