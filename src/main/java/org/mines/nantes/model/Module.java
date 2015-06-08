@@ -18,15 +18,6 @@ public class Module {
 
 	private String nom;
 
-	/** Hours of lessons */
-	private double hCours;
-
-	/** Hours of classwork */
-	private double hTD;
-
-	/** Number of groups following this Module */
-	private int nbGroupes;
-
 	/** Start date of the period during which the module takes place */
 	private Date dateDebut;
 
@@ -37,13 +28,8 @@ public class Module {
 	@ManyToOne
 	private Uv uv;
 
-	/** Wishes emitted for this Module */
-	@OneToMany(mappedBy = "moduleWish")
-	private Collection<Wish> wishes;
-
-	/** Affectation emitted for this Module */
-	@OneToMany(mappedBy = "moduleAffectation")
-	private Collection<Affectation> affectations;
+	@OneToMany(cascade = CascadeType.ALL)
+	private Collection<Enseignement> enseignements;
 
 	public int getId() {
 		return id;
@@ -53,35 +39,9 @@ public class Module {
 		this.id = id;
 	}
 
-	public double getCours() {
-		return hCours;
-	}
-
-	public void sethCours(double hCours) {
-		this.hCours = hCours;
-	}
-
-	public double gethTD() {
-		return hTD;
-	}
-
-	public void sethTD(double hTD) {
-		this.hTD = hTD;
-	}
-
-	public int getNbGroupes() {
-		return nbGroupes;
-	}
-
-	public void setNbGroupes(int nbGroupes) {
-		this.nbGroupes = nbGroupes;
-	}
-
 	public Date getDateDebut() { return dateDebut;	}
 
 	public void setDateDebut(Date dateDebut) {	this.dateDebut = dateDebut;	}
-
-	public double gethCours() {	return hCours;	}
 
 	public Date getDateFin() {	return dateFin;	}
 
@@ -93,5 +53,13 @@ public class Module {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Collection<Enseignement> getEnseignements() {
+		return enseignements;
+	}
+
+	public void setEnseignements(Collection<Enseignement> enseignements) {
+		this.enseignements = enseignements;
 	}
 }

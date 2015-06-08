@@ -1,9 +1,7 @@
 package org.mines.nantes.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 /**
  * Wish emited by a Utilisateur for a Module
@@ -23,7 +21,13 @@ public class Affectation {
 	private Utilisateur intervenant;
 
 	@ManyToOne
-	private Module moduleAffectation;
+	private Enseignement enseignement;
+
+	/**
+	 * Number of groups asked by the Utilisateur
+	 */
+	@Min(1)
+	private int nbGroupes;
 
 	public int getId() {
 		return id;
@@ -49,11 +53,19 @@ public class Affectation {
 		this.intervenant = intervenant;
 	}
 
-	public Module getModuleAffectation() {
-		return moduleAffectation;
+	public int getNbGroupes() {
+		return nbGroupes;
 	}
 
-	public void setModuleAffectation(Module moduleAffectation) {
-		this.moduleAffectation = moduleAffectation;
+	public void setNbGroupes(int nbGroupes) {
+		this.nbGroupes = nbGroupes;
+	}
+
+	public Enseignement getEnseignement() {
+		return enseignement;
+	}
+
+	public void setEnseignement(Enseignement enseignement) {
+		this.enseignement = enseignement;
 	}
 }

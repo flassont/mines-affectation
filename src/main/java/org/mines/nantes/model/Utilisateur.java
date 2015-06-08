@@ -34,10 +34,8 @@ public class Utilisateur {
 
 	private boolean admin;
 
-	/** List of Roles this Utilisateur has been given access to */
-	@ElementCollection
 	@Enumerated(EnumType.STRING)
-	private Set<UtilisateurRole> roles;
+	private UtilisateurType role;
 
 	public int getId() {
 		return id;
@@ -87,11 +85,11 @@ public class Utilisateur {
 		this.admin = admin;
 	}
 
-	public Set<UtilisateurRole> getRoles() {
-		return roles;
+	public UtilisateurType getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<UtilisateurRole> roles) {
-		this.roles = roles;
+	public void setRole(UtilisateurType role) {
+		this.role = role;
 	}
 }
