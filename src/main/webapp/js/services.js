@@ -14,8 +14,8 @@
 				this.nom = '';
 				this.module = [];
 				this.formations = [];
-			};
-		};
+			}
+		}
 		UserFactory.query = user.getList;
 		UserFactory.get = user.get;
 		UserFactory.put = user.put;
@@ -36,7 +36,7 @@
 			this.nbCours = 0;
 			this.nbTD = 0;
 		}
-	})
+	});
 
 	/**
 	 * Provider for app menu.
@@ -53,6 +53,7 @@
 			items: [{
 				template: 'UVs',
 				route: 'uv.list'
+				// TODO Add an element for which route to considered and add a directive for comparison
 			}]
 		};
 
@@ -79,4 +80,4 @@
 			};
 		}];
 	});
-}(angular.module('emn-webapp')))
+}(angular.module('emn-webapp')));

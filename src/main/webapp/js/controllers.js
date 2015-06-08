@@ -62,12 +62,11 @@
 
         // Mock for user data
         // TODO Replace user mock with content from service
-        var user = {
+        $scope.user = {
             lastName: 'DUPONT',
             firstName: 'Paul',
             role: 'Reponsable'
         };
-        $scope.user = user;
 
         // Menu items
         // Update from service when adding menu item
@@ -77,6 +76,6 @@
 
         function onMenuUpdate() {
             $scope.menu.items = menu.items;
-        };
+        }
     }]);
 }(angular.module('emn-webapp')));
