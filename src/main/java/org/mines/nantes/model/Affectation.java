@@ -20,8 +20,40 @@ public class Affectation {
 	private int year;
 
 	@ManyToOne
-	private Intervenant intervenant;
+	private Utilisateur intervenant;
 
 	@ManyToOne
 	private Module moduleAffectation;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public Utilisateur getIntervenant() {
+		return intervenant;
+	}
+
+	public void setIntervenant(Utilisateur intervenant) {
+		this.intervenant = intervenant;
+	}
+
+	public Module getModuleAffectation() {
+		return moduleAffectation;
+	}
+
+	public void setModuleAffectation(Module moduleAffectation) {
+		this.moduleAffectation = moduleAffectation;
+	}
 }
