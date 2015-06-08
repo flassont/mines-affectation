@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
  * Created by mclaveau on 08/06/2015.
  */
 @Stateless
-public class WishDao {
+public class WishDAO {
 
     @Inject
     EntityManager entityManager;
