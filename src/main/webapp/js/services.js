@@ -53,9 +53,6 @@
 			items: [{
 				template: 'UVs',
 				route: 'uv'
-			}, {
-				template: 'Modules',
-				route: 'module'
 			}]
 		};
 
