@@ -15,10 +15,14 @@
 			templateUrl: 'partials/home.html'
 		}).state('uv', {
 			url: '/uv',
-			templateUrl: 'partials/uv.html',
+			abstract: true,
+			template: '<ui-view />'
+		}).state('uv.list', {
+			url: '',
+			templateUrl: 'partials/uv.list.html',
 			controller: 'emn.controller.uvCtrl'
-		}).state('uv-detail', {
-			url: '/uv/:uvId',
+		}).state('uv.detail', {
+			url: '/{uvId:int}',
 			templateUrl: 'partials/uv.detail.html',
 			controller: 'emn.controller.uvCtrl.detailCtrl',
 			resolve: {

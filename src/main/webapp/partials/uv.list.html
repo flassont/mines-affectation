@@ -19,7 +19,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr data-ng-repeat="uv in uvs track by uv.id" data-ui-sref="uv-detail({uvId: uv.id})">
+				<tr data-ng-repeat="uv in uvs track by uv.id" data-ui-sref="uv.detail({uvId: uv.id})">
 					<td>{{ uv.nom }}</td>
 				</tr>
 			</tbody>

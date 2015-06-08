@@ -26,7 +26,7 @@
 			<nav class="col-xs-12 container-fluid">
 				<div class="row">
 					<ul class="menu col-xs-12 list-unstyled">
-						<li class="menu-item" data-ng-class="{active: isActive(item.route)}" data-ng-repeat="item in menu.items track by $index">
+						<li class="menu-item" data-ng-repeat="item in menu.items track by $index" data-ui-sref-active="active">
 							<a class="menu-item-link" data-ui-sref="{{item.route}}">{{item.template}}</a>
 						</li>
 					</ul>
