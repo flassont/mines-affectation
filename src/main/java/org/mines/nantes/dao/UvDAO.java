@@ -46,8 +46,16 @@ public class UvDAO {
         return result.isEmpty() ? null : result.get(0);
     }
 
-    public void addUv(Uv uv){
+    public void register(Uv uv){
         entityManager.persist(uv);
     }
 
+    public void update(Uv uv) throws Exception {
+        entityManager.merge(uv);
+    }
+
+    public void delete(String id) throws Exception {
+        Uv uv = entityManager.find(Uv.class,id);
+        entityManager.remove(uv);
+    }
 }

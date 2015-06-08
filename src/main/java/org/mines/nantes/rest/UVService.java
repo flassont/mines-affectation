@@ -28,9 +28,9 @@ public class UVService {
 
     @GET
     @Produces( MediaType.APPLICATION_JSON )
-    public Collection<Uv> getAllUV() {
+    public Response getAllUV() {
         Collection<Uv> listUv = uvDAO.getAllUV();
-        return listUv;
+        return Response.ok(listUv).build();
     }
 
     @GET
@@ -52,7 +52,7 @@ public class UVService {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         try {
-            uvDAO.addUv(uv);
+            uvDAO.register(uv);
             URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(uv.getId())).build();
             return Response.created(uri).build();
         } catch (ConstraintViolationException cve) {
