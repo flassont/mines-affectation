@@ -62,4 +62,12 @@ public class Module {
 	public void setEnseignements(Collection<Enseignement> enseignements) {
 		this.enseignements = enseignements;
 	}
+
+	public Uv getUv() {
+		return uv;
+	}
+
+	public void setUv(Uv uv) {
+		this.uv = uv;
+	}
 }

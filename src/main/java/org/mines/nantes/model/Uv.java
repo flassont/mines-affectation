@@ -49,6 +49,10 @@ public class Uv {
 		this.id = id;
 	}
 
+	public Utilisateur getResponsableUV() {
+		return responsableUV;
+	}
+
 	public void setResponsableUV(Utilisateur responsableUV) {
 		this.responsableUV = responsableUV;
 	}
