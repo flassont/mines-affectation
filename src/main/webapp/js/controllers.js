@@ -75,10 +75,6 @@
         $scope.menu.items = menu.items;
         $scope.$on('menuChanged', onMenuUpdate);
 
-        $scope.isActive = function(link) {
-            return '#' + $location.path() === link;
-        };
-
         function onMenuUpdate() {
             $scope.menu.items = menu.items;
         };

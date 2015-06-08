@@ -52,7 +52,7 @@
 			/** Default items in the menu */
 			items: [{
 				template: 'UVs',
-				route: 'uv'
+				route: 'uv.list'
 			}]
 		};
 
