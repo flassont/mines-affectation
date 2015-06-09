@@ -63,6 +63,7 @@ public class UVService {
     @PUT
     @Path("{id}")
     @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.APPLICATION_JSON )
     public Response updateUv(Uv uv) {
         if(uv == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();

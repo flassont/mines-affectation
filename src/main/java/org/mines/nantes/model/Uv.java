@@ -2,10 +2,8 @@ package org.mines.nantes.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.codehaus.jackson.annotate.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -61,7 +59,7 @@ public class Uv {
 		this.responsableUV = responsableUV;
 	}
 
-	public Collection<Module> getModules() {
+	public Set<Module> getModules() {
 		return modules;
 	}
 

@@ -25,8 +25,6 @@ public class UvDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Uv> criteria = cb.createQuery(Uv.class);
         Root<Uv> uv = criteria.from(Uv.class);
-        uv.fetch(Uv_.modules,JoinType.LEFT).fetch(Module_.enseignements,JoinType.LEFT);
-        uv.fetch(Uv_.formations,JoinType.LEFT);
         criteria.select(uv);
         return entityManager.createQuery(criteria).getResultList();
     }
@@ -40,8 +38,6 @@ public class UvDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Uv> criteria = cb.createQuery(Uv.class);
         Root<Uv> uv = criteria.from(Uv.class);
-        uv.fetch(Uv_.modules,JoinType.LEFT).fetch(Module_.enseignements, JoinType.LEFT);
-        uv.fetch(Uv_.formations,JoinType.LEFT);
         criteria.select(uv).where(cb.equal(uv.get("id"), id));
 
         // getSingleResult() throws NoResultException if no result
