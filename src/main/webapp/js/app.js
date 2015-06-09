@@ -30,6 +30,19 @@
 					return uvModel.get($stateParams.uvId);
 				}]
 			}
+		}).state('user', {
+			url: '/user',
+			abstract: true,
+			template: '<ui-view />'
+		}).state('user.list', {
+			url: '',
+			templateUrl: 'partials/user.list.html',
+			controller: 'emn.controller.userCtrl',
+			resolve: {
+				users: ['emn.model.user', function(userModel) {
+					return userModel.query();
+				}]
+			}
 		});
 	}]);
 
@@ -42,5 +55,9 @@
 		baseUrl = baseUrl + '/rest/';
 
 		Restangular.setBaseUrl(baseUrl);
+	}]);
+
+	app.run(['$rootScope', function($rs) {
+		$rs.$on('$stateChangeError', console.error.bind(console));
 	}]);
 }(angular));

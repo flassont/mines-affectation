@@ -1,6 +1,13 @@
 (function(app) {
     'use strict';
 
+	/**
+	 * Controller for User screen
+	 */
+	app.controller('emn.controller.userCtrl', ['$scope', '$modal', 'emn.model.user', 'users', function($scope, $modal, UserModel, users) {
+		$scope.users = users;
+	}]);
+
     /**
      * Controller for UV screen
      */

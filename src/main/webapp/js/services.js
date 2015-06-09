@@ -2,6 +2,33 @@
 	'use strict';
 
 	/**
+	 * User model
+	 */
+	app.factory('emn.model.user', ['Restangular', function(Restangular) {
+		var user = Restangular.all('user');
+
+		function UserFactory() {
+			function UserModel () {
+				return {
+					id: 0,
+					email: '',
+					password: '',
+					firstName: '',
+					lastName: ''
+				};
+			}
+			return new UserModel();
+		}
+
+		UserFactory.query = user.getList;
+		UserFactory.get = user.get;
+		UserFactory.save = user.save;
+		UserFactory.delete= user.delete;
+
+		return UserFactory;
+	}]);
+
+	/**
 	 * UV model
 	 */
 	// TODO Replace with $resource call
@@ -54,6 +81,9 @@
 				template: 'UVs',
 				route: 'uv.list'
 				// TODO Add an element for which route to considered and add a directive for comparison
+			}, {
+				template: 'Utilisateurs',
+				route: 'user.list'
 			}]
 		};
 
