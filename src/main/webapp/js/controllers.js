@@ -44,14 +44,63 @@
         $scope.cancel = function() {
             $modalInstance.dismiss('Cancelled');
         };
+
+        $scope.fields = [{
+            key: 'nom',
+            type: 'input',
+            templateOptions: {
+                type: 'text',
+                label: 'Intitulé',
+                placeholder: 'Intitulé de l\'UV',
+                required: true
+            }
+        }];
     }]);
 
     /**
      * Controller for UV detail screen
      * UV comes from state's resolve object
      */
-    app.controller('emn.controller.uvCtrl.detailCtrl', ['$scope', 'uv', function($scope, uv) {
+    app.controller('emn.controller.uvCtrl.detailCtrl', ['$scope', '$modal', 'uv', function($scope, $modal, uv) {
         $scope.uv = uv;
+
+        $scope.createModule = function() {
+            var modalInstance = $modal.open({
+                templateUrl: 'create.html',
+                controller: 'emn.controller.uvCtrl.detailCtrl.createModuleCtrl'
+            });
+
+            modalInstance.result.then(function (module) {
+                if(angular.isFunction($scope.uv.modules)) {
+                    $scope.uv.modules = [].slice.call($scope.uv.modules);
+                }
+                $scope.uv.modules.push(module);
+                $scope.uv.put();
+            }, console.log.bind(console));
+        };
+    }]);
+
+    app.controller('emn.controller.uvCtrl.detailCtrl.createModuleCtrl', ['$scope', '$modalInstance', 'emn.model.module', function($scope, $modalInstance, moduleModel) {
+        $scope.model = new moduleModel();
+
+        $scope.ok = function() {
+            $modalInstance.close($scope.model);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('Cancelled');
+        };
+
+        $scope.fields = [{
+            key: 'nom',
+            type: 'input',
+            templateOptions: {
+                type: 'text',
+                label: 'Intitulé',
+                placeholder: 'Intitulé du module',
+                required: true
+            }
+        }];
     }]);
 
     /**

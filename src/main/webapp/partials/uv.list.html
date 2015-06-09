@@ -34,14 +34,12 @@
 	<div class="modal-header panel-heading">
 		<h3 class="modal-title">Ajouter une UV</h3>
 	</div>
-	<form class="modal-body">
-			<div class="form-group">
-				<label for="intitule" class="sr-only">Intitulé</label>
-				<input type="text" id="intitule" class="form-control input-lg" placeholder="Intitulé" ng-model="model.nom" required autofocus/>
-			</div>
+	<form  class="modal-body" novalidate>
+		<formly-form model="model" fields="fields">
 			<div class="modal-footer">
 				<input type="submit" class="btn btn-primary" data-ng-click="ok()" value="Ajouter" />
 				<button type="reset" class="btn btn-default" data-ng-click="cancel()">Annuler</button>
 			</div>
+		</formly-form>
 	</form>
 </script>
