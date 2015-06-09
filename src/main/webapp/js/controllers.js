@@ -62,7 +62,7 @@
      * UV comes from state's resolve object
      */
     app.controller('emn.controller.uvCtrl.detailCtrl', ['$scope', '$modal', 'uv', function($scope, $modal, uv) {
-        $scope.uv = uv;
+        setUv(uv);
 
         $scope.createModule = function() {
             var modalInstance = $modal.open({
@@ -71,13 +71,15 @@
             });
 
             modalInstance.result.then(function (module) {
-                if(angular.isFunction($scope.uv.modules)) {
-                    $scope.uv.modules = [].slice.call($scope.uv.modules);
-                }
+	            module.uv = $scope.uv.id;
                 $scope.uv.modules.push(module);
-                $scope.uv.put();
+                $scope.uv.put().then(setUv);
             }, console.log.bind(console));
         };
+
+	    function setUv(uv) {
+		    $scope.uv = uv;
+	    }
     }]);
 
     app.controller('emn.controller.uvCtrl.detailCtrl.createModuleCtrl', ['$scope', '$modalInstance', 'emn.model.module', function($scope, $modalInstance, moduleModel) {
