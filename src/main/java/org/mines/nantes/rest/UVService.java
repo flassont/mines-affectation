@@ -59,4 +59,21 @@ public class UVService {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
+
+    @PUT
+    @Path("{id}")
+    @Consumes( MediaType.APPLICATION_JSON )
+    public Response updateUv(Uv uv) {
+        if(uv == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        try {
+            uvDAO.update(uv);
+            return Response.ok(uv).build();
+        } catch(ConstraintViolationException cve) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        } catch(Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

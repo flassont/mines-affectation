@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Defining application module and its dependencies
-	var app = angular.module('emn-webapp', ['restangular', 'ui.router', 'ui.bootstrap', 'xeditable']);
+	var app = angular.module('emn-webapp', ['restangular', 'ui.router', 'ui.bootstrap', 'formly', 'formlyBootstrap', 'xeditable']);
 
 	// Defining routes
 	app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

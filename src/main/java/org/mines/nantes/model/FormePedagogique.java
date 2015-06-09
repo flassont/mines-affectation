@@ -8,5 +8,9 @@ public enum FormePedagogique {
 	COURS,
 	TD,
 	TP,
-	ORAL
+	RESPONSABILITE,
+	TUTORAT,
+	PARTICIPATION_AUX_COURS,
+	ORAL,
+	AUTRES
 }
