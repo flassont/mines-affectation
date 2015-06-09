@@ -2,6 +2,7 @@ package org.mines.nantes.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Unité de Valeur.
@@ -22,16 +23,14 @@ public class Uv {
 	/** List of Module composing this Uv */
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			mappedBy = "uv",
-			fetch = FetchType.EAGER
+			mappedBy = "uv"
 	)
-	private Collection<Module> modules;
+	private Set<Module> modules;
 
 	/** List of Formation following this Uv */
 	@ManyToMany(
-			mappedBy = "uvs",
-			fetch = FetchType.EAGER)
-	private Collection<Formation> formations;
+			mappedBy = "uvs")
+	private Set<Formation> formations;
 
 	public String getNom() {
 		return nom;
@@ -61,15 +60,15 @@ public class Uv {
 		return modules;
 	}
 
-	public void setModules(Collection<Module> modules) {
+	public void setModules(Set<Module> modules) {
 		this.modules = modules;
 	}
 
-	public Collection<Formation> getFormations() {
+	public Set<Formation> getFormations() {
 		return formations;
 	}
 
-	public void setFormations(Collection<Formation> formations) {
+	public void setFormations(Set<Formation> formations) {
 		this.formations = formations;
 	}
 }

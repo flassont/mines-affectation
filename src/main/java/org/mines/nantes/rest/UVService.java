@@ -27,8 +27,8 @@ public class UVService {
     UvDAO uvDAO;
 
     @GET
-      @Produces( MediaType.APPLICATION_JSON )
-      public Response getAllUV() {
+    @Produces( MediaType.APPLICATION_JSON )
+    public Response getAllUV() {
         Collection<Uv> listUv = uvDAO.getAllUV();
         return Response.ok(listUv).build();
     }

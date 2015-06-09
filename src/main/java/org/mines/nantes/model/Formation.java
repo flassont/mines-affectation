@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Florian on 28/05/2015.
@@ -23,7 +24,7 @@ public class Formation {
 			orphanRemoval = true,
 			mappedBy = "parent"
 	)
-	private Collection<Option> options;
+	private Set<Option> options;
 
 	@ManyToMany(
 			cascade = {CascadeType.DETACH,
@@ -34,7 +35,7 @@ public class Formation {
 			joinColumns = @JoinColumn(name="formation_id"),
 			inverseJoinColumns = @JoinColumn(name = "uv_id")
 	)
-	private Collection<Uv> uvs;
+	private Set<Uv> uvs;
 
 	public int getId() {
 		return id;
@@ -56,15 +57,15 @@ public class Formation {
 		return options;
 	}
 
-	public void setOptions(Collection<Option> options) {
+	public void setOptions(Set<Option> options) {
 		this.options = options;
 	}
 
-	public Collection<Uv> getUvs() {
+	public Set<Uv> getUvs() {
 		return uvs;
 	}
 
-	public void setUvs(Collection<Uv> uvs) {
+	public void setUvs(Set<Uv> uvs) {
 		this.uvs = uvs;
 	}
 }

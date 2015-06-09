@@ -3,6 +3,7 @@ package org.mines.nantes.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @summary Unit part of UV.
@@ -29,7 +30,7 @@ public class Module {
 	private Uv uv;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private Collection<Enseignement> enseignements;
+	private Set<Enseignement> enseignements;
 
 	public int getId() {
 		return id;
@@ -55,11 +56,11 @@ public class Module {
 		this.nom = nom;
 	}
 
-	public Collection<Enseignement> getEnseignements() {
+	public Set<Enseignement> getEnseignements() {
 		return enseignements;
 	}
 
-	public void setEnseignements(Collection<Enseignement> enseignements) {
+	public void setEnseignements(Set<Enseignement> enseignements) {
 		this.enseignements = enseignements;
 	}
 

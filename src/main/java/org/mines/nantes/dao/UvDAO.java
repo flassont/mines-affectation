@@ -1,13 +1,13 @@
 package org.mines.nantes.dao;
 
+import org.mines.nantes.model.Module;
 import org.mines.nantes.model.Uv;
+import org.mines.nantes.model.Uv_;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +24,8 @@ public class UvDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Uv> criteria = cb.createQuery(Uv.class);
         Root<Uv> uv = criteria.from(Uv.class);
+        uv.fetch(Uv_.modules,JoinType.LEFT);
+        uv.fetch(Uv_.formations,JoinType.LEFT);
         criteria.select(uv);
         return entityManager.createQuery(criteria).getResultList();
     }
@@ -37,6 +39,8 @@ public class UvDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Uv> criteria = cb.createQuery(Uv.class);
         Root<Uv> uv = criteria.from(Uv.class);
+        uv.fetch(Uv_.modules,JoinType.LEFT);
+        uv.fetch(Uv_.formations,JoinType.LEFT);
         criteria.select(uv).where(cb.equal(uv.get("id"), id));
 
         // getSingleResult() throws NoResultException if no result

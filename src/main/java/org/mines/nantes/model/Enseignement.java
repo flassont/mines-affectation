@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.time.Period;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Part of a Module
@@ -28,10 +29,10 @@ public class Enseignement {
 	private FormePedagogique forme;
 
 	@OneToMany(mappedBy = "enseignement")
-	private Collection<Wish> wishs;
+	private Set<Wish> wishs;
 
 	@OneToMany(mappedBy = "enseignement")
-	private Collection<Affectation> affectations;
+	private Set<Affectation> affectations;
 
 	public int getId() {
 		return id;
@@ -65,11 +66,11 @@ public class Enseignement {
 		this.forme = forme;
 	}
 
-	public Collection<Wish> getWishs() {
+	public Set<Wish> getWishs() {
 		return wishs;
 	}
 
-	public void setWishs(Collection<Wish> wishs) {
+	public void setWishs(Set<Wish> wishs) {
 		this.wishs = wishs;
 	}
 
@@ -77,7 +78,7 @@ public class Enseignement {
 		return affectations;
 	}
 
-	public void setAffectations(Collection<Affectation> affectations) {
+	public void setAffectations(Set<Affectation> affectations) {
 		this.affectations = affectations;
 	}
 }
