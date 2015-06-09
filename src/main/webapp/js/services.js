@@ -56,11 +56,24 @@
 	 * Module model
 	 */
 	app.factory('emn.model.module', function() {
+		// Creating a factory for REST services
 		function ModuleFactory() {
-			return {
-				nom: ''
-			}
+			return new this.model();
 		}
+
+		// The Model itself
+		function ModuleModel() {
+			this.id = null;
+			this.nom = '';
+			this.dateDebut = undefined;
+			this.dateFin = undefined;
+			this.enseignements = [];
+			this.uv = null;
+		}
+
+		ModuleFactory.prototype = {
+			model: ModuleModel
+		};
 
 		return ModuleFactory;
 	});
