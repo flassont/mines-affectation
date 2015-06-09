@@ -1,6 +1,7 @@
 package org.mines.nantes.dao;
 
 import org.mines.nantes.model.Module;
+import org.mines.nantes.model.Module_;
 import org.mines.nantes.model.Uv;
 import org.mines.nantes.model.Uv_;
 
@@ -24,7 +25,7 @@ public class UvDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Uv> criteria = cb.createQuery(Uv.class);
         Root<Uv> uv = criteria.from(Uv.class);
-        uv.fetch(Uv_.modules,JoinType.LEFT);
+        uv.fetch(Uv_.modules,JoinType.LEFT).fetch(Module_.enseignements,JoinType.LEFT);
         uv.fetch(Uv_.formations,JoinType.LEFT);
         criteria.select(uv);
         return entityManager.createQuery(criteria).getResultList();
@@ -39,7 +40,7 @@ public class UvDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Uv> criteria = cb.createQuery(Uv.class);
         Root<Uv> uv = criteria.from(Uv.class);
-        uv.fetch(Uv_.modules,JoinType.LEFT);
+        uv.fetch(Uv_.modules,JoinType.LEFT).fetch(Module_.enseignements, JoinType.LEFT);
         uv.fetch(Uv_.formations,JoinType.LEFT);
         criteria.select(uv).where(cb.equal(uv.get("id"), id));
 

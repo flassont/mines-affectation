@@ -1,5 +1,8 @@
 package org.mines.nantes.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.time.Period;
@@ -11,6 +14,7 @@ import java.util.Set;
  * Created by Florian on 08/06/2015.
  */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Enseignement {
 	@GeneratedValue
 	@Id

@@ -1,5 +1,9 @@
 package org.mines.nantes.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -10,6 +14,7 @@ import java.util.Set;
  * Created by Florian on 28/05/2015.
  */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Uv {
 	@Id
 	@GeneratedValue

@@ -1,5 +1,7 @@
 package org.mines.nantes.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.util.Set;
  * Created by Florian on 28/05/2015.
  */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Formation {
 	@Id
 	@GeneratedValue
