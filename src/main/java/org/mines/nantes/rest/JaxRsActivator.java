@@ -3,12 +3,7 @@ package org.mines.nantes.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import javax.inject.Inject;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistryBuilder;
 import org.mines.nantes.util.HibernateUtil;
 
 import javax.ws.rs.ApplicationPath;
@@ -17,7 +12,6 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
-import java.util.Set;
 
 /**
  * Jax-RS activator (Java EE6 style)
