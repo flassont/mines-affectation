@@ -1,0 +1,71 @@
+<h2>{{enseignement.module.nom}} - {{enseignement.forme}}</h2>
+
+<p>Nombre de groupes : {{enseignement.nbGroupes}}</p>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Voeux</h3>
+    </div>
+    <div class="panel-body" data-ng-hide="wishs.length">
+        <p>Aucun souhait n'a été formulé</p>
+    </div>
+    <table class="table table-stripped" data-ng-show="wishs.length">
+        <thead>
+            <tr>
+                <th>Enseignant</th>
+                <th>Nombre de groupes</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="wish in wishs track by wish.id">
+                <td>{{wish.intervenant.firstName}} {{wish.intervenant.lastName}}</td>
+                <td>{{wish.nbGroupes}}</td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-success" data-ng-click="acceptWish()">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="sr-only">Accepter</span>
+                        </button>
+                        <button class="btn btn-danger" data-ng-click="rejectWish()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="sr-only">Rejeter</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">Affectations</h3>
+    </div>
+    <div class="panel-body" data-ng-hide="affectations.length">
+        <p>Aucun intervenant n'a été affecté</p>
+    </div>
+    <table class="table table-stripped" data-ng-show="affectations.length">
+        <thead>
+        <tr>
+            <th>Enseignant</th>
+            <th>Nombre de groupes</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="affectation in affectations track by affectation.id">
+            <td>{{wish.intervenant.firstName}} {{wish.intervenant.lastName}}</td>
+            <td>{{wish.nbGroupes}}</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-danger" data-ng-click="rejectAffectation()">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="sr-only">Retirer</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

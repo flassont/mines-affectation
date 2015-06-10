@@ -2,6 +2,30 @@
 	'use strict';
 
 	/**
+	 * Enseignement model
+	 */
+	app.factory('emn.model.enseignement', ['Restangular', function(Restangular) {
+		var enseignementResource = Restangular.all('enseignement');
+
+		function EnseignementFactory() {
+			return new EnseignementModel();
+		}
+
+		function EnseignementModel () {
+			this.id = null;
+			this.forme = '';
+			this.wishs = [];
+		}
+
+		EnseignementFactory.getAll = enseignementResource.getList;
+		EnseignementFactory.get = enseignementResource.get;
+		EnseignementFactory.save = enseignementResource.save;
+		EnseignementFactory.delete= enseignementResource.delete;
+
+		return EnseignementFactory;
+	}]);
+
+	/**
 	 * User model
 	 */
 	app.factory('emn.model.user', ['Restangular', function(Restangular) {

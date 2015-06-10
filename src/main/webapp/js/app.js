@@ -43,13 +43,22 @@
 					return userModel.getAll();
 				}]
 			}
-		}).state('wish',{
+		}).state('wish', {
 			url: '/wish',
-			templateUrl: 'partials/wish.html',
-			controller: 'emn.controller.wishCtrl',
+			templateUrl: 'partials/affectation.html',
+			controller: 'emn.controller.affectationCtrl',
 			resolve: {
-				uvs: ['emn.model.uv', function(uvProvider) {
-					return uvProvider.getAll();
+				wishs: ['emn.model.wish', function(WishProvider) {
+					return WishProvider.getAll();
+				}]
+			}
+		}).state('wish.module', {
+			url: '/{enseignementId:int}',
+			templateUrl: 'partials/affectation.user.html',
+			controller: 'emn.controller.affectationCtrl.moduleCtrl',
+			resolve: {
+				enseignement: ['$stateParams', 'emn.model.enseignement', function($stateParams, EnseignementProvider) {
+					return EnseignementProvider.get($stateParams.enseignementId);
 				}]
 			}
 		}).state('affectation', {
@@ -59,6 +68,15 @@
 			resolve: {
 				wishs: ['emn.model.wish', function(WishProvider) {
 					return WishProvider.getAll();
+				}]
+			}
+		}).state('affectation.module', {
+			url: '/{enseignementId:int}',
+			templateUrl: 'partials/affectation.admin.html',
+			controller: 'emn.controller.affectationCtrl.moduleCtrl',
+			resolve: {
+				enseignement: ['$stateParams', 'emn.model.enseignement', function($stateParams, EnseignementProvider) {
+					return EnseignementProvider.get($stateParams.enseignementId);
 				}]
 			}
 		});

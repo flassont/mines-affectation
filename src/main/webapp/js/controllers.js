@@ -1,8 +1,18 @@
 (function(app) {
     'use strict';
 
-	app.controller('emn.controller.affectationCtrl', ['$scope', 'wishs', function($scope, wishs) {
+	app.controller('emn.controller.affectationCtrl', ['$scope', '$state', 'wishs', function($scope, $state, wishs) {
 		$scope.wishs = wishs;
+		$scope.go = function(enseignement) {
+			$state.go('affectation.module', {
+				enseignementId: enseignement.id
+			});
+		}
+	}]);
+
+	app.controller('emn.controller.affectationCtrl.moduleCtrl', ['$scope', 'enseignement', function($scope, enseignement) {
+		$scope.enseignement = enseignement;
+		console.log(enseignement)
 	}]);
 
 	/**
