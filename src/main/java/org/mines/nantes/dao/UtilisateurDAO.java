@@ -30,7 +30,16 @@ public class UtilisateurDAO {
 
     }
 
-    public void addUtilisateur(Utilisateur utilisateur){
+    public void register(Utilisateur utilisateur){
         entityManager.persist(utilisateur);
+    }
+
+    public void update(Utilisateur utilisateur) throws Exception {
+        entityManager.merge(utilisateur);
+    }
+
+    public void delete(String id) throws Exception {
+        Utilisateur utilisateur = entityManager.find(Utilisateur.class,id);
+        entityManager.remove(utilisateur);
     }
 }
