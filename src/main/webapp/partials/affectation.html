@@ -1,0 +1,11 @@
+<h1 class="page-header">Affectations</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <p data-ng-hide="wishs.length">Aucun voeu n'a été émis</p>
+        <!-- Voeux effectués -->
+        <ul data-ng-show="wishs.length">
+            <li data-ng-repeat="wish in wishs track by wish.id"> {{ wish.utilisateur }} - {{ wish.enseignement.module.uv.nom }}/{{ wish.enseignement.module.nom}}/{{ wish.enseignement.nom }}</li>
+        </ul>
+    </div>
+</div>

@@ -52,6 +52,9 @@
 					return uvProvider.getAll();
 				}]
 			}
+		}).state('affectation', {
+			url: '/affectations',
+			templateUrl: 'partials/affectation.html'
 		});
 	}]);
 
