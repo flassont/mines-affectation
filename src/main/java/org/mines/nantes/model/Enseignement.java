@@ -20,7 +20,7 @@ public class Enseignement {
 	@Id
 	private int id;
 
-	private Period nbHeures;
+	private int nbHeures;
 
 	@Min(1)
 	private int nbGroupes;
@@ -46,11 +46,11 @@ public class Enseignement {
 		this.id = id;
 	}
 
-	public Period getNbHeures() {
+	public int getNbHeures() {
 		return nbHeures;
 	}
 
-	public void setNbHeures(Period nbHeures) {
+	public void setNbHeures(int nbHeures) {
 		this.nbHeures = nbHeures;
 	}
 
