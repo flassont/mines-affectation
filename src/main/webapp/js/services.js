@@ -34,7 +34,7 @@
 		var uvResource = Restangular.all('uv');
 
 		function UvFactory() {
-			return new UserModel();
+			return new UvModel();
 		}
 
 		function UvModel() {
@@ -73,6 +73,32 @@
 
 		return ModuleFactory;
 	});
+
+
+	/**
+	 * Wish modle
+	 */
+	app.factory('emn.model.wish', ['Restangular', function(Restangular) {
+		var wishResource = Restangular.all('wish');
+
+		function WishFactory() {
+			return new WishModel();
+		}
+
+		function WishModel() {
+			this.id = null;
+			this.year = Date.now();
+			this.intervenant = null;
+			this.enseignement = null;
+		}
+
+		WishFactory.getAll = wishResource.getList;
+		WishFactory.get = wishResource.get;
+		WishFactory.save = wishResource.save;
+		WishFactory.delete = wishResource.remove;
+
+		return WishFactory
+	}]);
 
 	/**
 	 * User service

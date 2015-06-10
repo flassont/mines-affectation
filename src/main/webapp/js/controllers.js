@@ -1,6 +1,10 @@
 (function(app) {
     'use strict';
 
+	app.controller('emn.controller.affectationCtrl', ['$scope', 'wishs', function($scope, wishs) {
+		$scope.wishs = wishs;
+	}]);
+
 	/**
 	 * Controller for User screen
 	 */
@@ -112,7 +116,7 @@
         }];
     }]);
 
-	app.controller('emn.controller.wishCtrl', ['$scope', 'uvs', function($scope, uvs) {
+	app.controller('emn.controller.wishCtrl', ['$scope', 'emn.service.auth', 'emn.model.wish', 'uvs', function($scope, AuthService, WishProvider, uvs) {
 		$scope.uvs = uvs;
 
 		/**
@@ -126,9 +130,12 @@
 	        if(!!uv || !! module || !!enseignement) {
 		        return;
 	        }
-	        nbGroupes = Number(nbGroupes) || 2;
+	        nbGroupes = Number(nbGroupes) || 1;
 
-	        wishService.add(enseignement, nbGroupes);
+	        var wish = new WishProvider();
+	        wish.intervenant = AuthService.user.id;
+	        wish.enseignement = enseignement.id;
+	        WishProvider.save(wish);
         }
 	}]);
 

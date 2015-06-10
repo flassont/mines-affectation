@@ -54,7 +54,13 @@
 			}
 		}).state('affectation', {
 			url: '/affectations',
-			templateUrl: 'partials/affectation.html'
+			templateUrl: 'partials/affectation.html',
+			controller: 'emn.controller.affectationCtrl',
+			resolve: {
+				wishs: ['emn.model.wish', function(WishProvider) {
+					return WishProvider.getAll();
+				}]
+			}
 		});
 	}]);
 
