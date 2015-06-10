@@ -5,25 +5,24 @@
 	 * User model
 	 */
 	app.factory('emn.model.user', ['Restangular', function(Restangular) {
-		var user = Restangular.all('user');
+		var userResource = Restangular.all('user');
 
 		function UserFactory() {
-			function UserModel () {
-				return {
-					id: 0,
-					email: '',
-					password: '',
-					firstName: '',
-					lastName: ''
-				};
-			}
 			return new UserModel();
 		}
 
-		UserFactory.query = user.getList;
-		UserFactory.get = user.get;
-		UserFactory.save = user.save;
-		UserFactory.delete= user.delete;
+		function UserModel () {
+			this.id = null;
+			this.email = '';
+			this.password = '';
+			this.firstName = '';
+			this.lastName = '';
+		}
+
+		UserFactory.getAll = userResource.getList;
+		UserFactory.get = userResource.get;
+		UserFactory.save = userResource.save;
+		UserFactory.delete= userResource.delete;
 
 		return UserFactory;
 	}]);
@@ -31,25 +30,26 @@
 	/**
 	 * UV model
 	 */
-	// TODO Replace with $resource call
 	app.factory('emn.model.uv', ['Restangular', function(Restangular) {
-		var user = Restangular.all('uv');
+		var uvResource = Restangular.all('uv');
 
-		function UserFactory() {
-			function UserModel() {
-				this.id = 0;
-				this.nom = '';
-				this.module = [];
-				this.formations = [];
-			}
+		function UvFactory() {
+			return new UserModel();
 		}
-		UserFactory.query = user.getList;
-		UserFactory.get = user.get;
-		UserFactory.put = user.put;
-		UserFactory.post = user.post;
-		UserFactory.delete = user.delete;
 
-		return UserFactory;
+		function UvModel() {
+			this.id = null;
+			this.nom = '';
+			this.modules = [];
+			this.formations = [];
+		}
+
+		UvFactory.getAll = uvResource.getList;
+		UvFactory.get = uvResource.get;
+		UvFactory.save = uvResource.save;
+		UvFactory.delete = uvResource.remove;
+
+		return UvFactory;
 	}]);
 
 	/**
@@ -58,7 +58,7 @@
 	app.factory('emn.model.module', function() {
 		// Creating a factory for REST services
 		function ModuleFactory() {
-			return new this.model();
+			return new ModuleModel();
 		}
 
 		// The Model itself
@@ -71,12 +71,28 @@
 			this.uv = null;
 		}
 
-		ModuleFactory.prototype = {
-			model: ModuleModel
-		};
-
 		return ModuleFactory;
 	});
+
+	/**
+	 * User service
+	 * Give access to login/logout methods and define user's privileges
+	 */
+	app.factory('emn.service.auth', [function() {
+		var user = {
+			isAdmin: true,
+			email: 'paul.dupont@mines-nantes.fr',
+			firstName: 'Paul',
+			lastName: 'DUPONT',
+			token: '0000000000000000'
+		};
+
+		return {
+			get user() {
+				return user;
+			}
+		};
+	}]);
 
 	/**
 	 * Provider for app menu.

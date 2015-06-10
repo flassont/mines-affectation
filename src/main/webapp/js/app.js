@@ -40,7 +40,7 @@
 			controller: 'emn.controller.userCtrl',
 			resolve: {
 				users: ['emn.model.user', function(userModel) {
-					return userModel.query();
+					return userModel.getAll();
 				}]
 			}
 		});

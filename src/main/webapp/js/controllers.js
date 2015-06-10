@@ -23,7 +23,7 @@
             });
 
             modalInstance.result.then(function(uv) {
-                Uv.post(uv).then(getUv);
+                Uv.save(uv).then(getUv);
             }, function(reason) {
                 console.log(reason);
             });
@@ -31,7 +31,7 @@
 
         function getUv() {
             $scope.isLoading++;
-            Uv.query().then(function(uvs) {
+            Uv.getAll().then(function(uvs) {
                 $scope.uvs = uvs;
                 $scope.isLoading--;
             });
@@ -80,7 +80,7 @@
             modalInstance.result.then(function (module) {
 	            module.uv = $scope.uv.id;
                 $scope.uv.modules.push(module);
-                $scope.uv.put().then(setUv);
+                $scope.uv.save().then(setUv);
             }, console.log.bind(console));
         };
 
@@ -115,16 +115,10 @@
     /**
      * Controller for the sidebar menu
      */
-    app.controller('emn.controller.menuCtrl', ['$scope', '$location', 'emn.service.menu', function($scope, $location, menu) {
+    app.controller('emn.controller.menuCtrl', ['$scope', '$location', 'emn.service.menu', 'emn.service.auth', function($scope, $location, menu, auth) {
         'use strict';
 
-        // Mock for user data
-        // TODO Replace user mock with content from service
-        $scope.user = {
-            lastName: 'DUPONT',
-            firstName: 'Paul',
-            role: 'Reponsable'
-        };
+        $scope.user = auth.user;
 
         // Menu items
         // Update from service when adding menu item
