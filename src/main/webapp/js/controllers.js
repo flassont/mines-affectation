@@ -114,6 +114,22 @@
 
 	app.controller('emn.controller.wishCtrl', ['$scope', 'uvs', function($scope, uvs) {
 		$scope.uvs = uvs;
+
+		/**
+		 * Add a Enseignement to the wishlist
+		 * @param uv            Enseignement's parent
+		 * @param module        Enseignement's parent
+		 * @param enseignement  Enseignement concerned by the wish
+		 * @param nbGroupes     Number of groupes asked
+		 */
+        $scope.add = function(enseignement, nbGroupes) {
+	        if(!!uv || !! module || !!enseignement) {
+		        return;
+	        }
+	        nbGroupes = Number(nbGroupes) || 2;
+
+	        wishService.add(enseignement, nbGroupes);
+        }
 	}]);
 
     /**
