@@ -1,16 +1,17 @@
 package org.mines.nantes.rest;
 
 import org.mines.nantes.dao.WishDAO;
+import org.mines.nantes.model.Uv;
 import org.mines.nantes.model.Wish;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.validation.ConstraintViolationException;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.net.URI;
 import java.util.Collection;
 
 /**
@@ -31,5 +32,21 @@ public class WishService {
     public Response getAllWish() {
         Collection<Wish> listWish = wishDAO.getAllWish();
         return Response.ok(listWish).build();
+    }
+
+    @POST
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.TEXT_PLAIN )
+    public Response createWish(Wish wish) {
+        if(wish == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        try {
+            wishDAO.register(wish);
+            URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(wish.getId())).build();
+            return Response.created(uri).build();
+        } catch (ConstraintViolationException cve) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 }
