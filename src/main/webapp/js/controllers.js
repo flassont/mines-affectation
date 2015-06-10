@@ -112,6 +112,10 @@
         }];
     }]);
 
+	app.controller('emn.controller.wishCtrl', ['$scope', 'uvs', function($scope, uvs) {
+		$scope.uvs = uvs;
+	}]);
+
     /**
      * Controller for the sidebar menu
      */

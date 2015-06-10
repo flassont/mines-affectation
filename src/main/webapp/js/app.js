@@ -43,6 +43,15 @@
 					return userModel.getAll();
 				}]
 			}
+		}).state('wish',{
+			url: '/wish',
+			templateUrl: 'partials/wish.html',
+			controller: 'emn.controller.wishCtrl',
+			resolve: {
+				uvs: ['emn.model.uv', function(uvProvider) {
+					return uvProvider.getAll();
+				}]
+			}
 		});
 	}]);
 

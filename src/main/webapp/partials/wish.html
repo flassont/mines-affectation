@@ -1,0 +1,32 @@
+<h1 class="page-header">Voeux</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Voeux disponibles -->
+        <accordion class="col-lg-6" data-close-others="true">
+            <accordion-group data-heading="{{uv.nom}}" data-ng-repeat="uv in ::uvs track by uv.id">
+                <p data-ng-hide="::uv.modules.length">Aucun module disponible</p>
+                <accordion data-close-others="true" data-ng-show="::uv.modules.length">
+                    <accordion-group data-heading="{{module.nom}}" data-ng-repeat="module in ::uv.modules track by module.id">
+                        <p data-ng-hide="::module.enseignements.length">Aucun enseignement disponible</p>
+                        <table data-ng-show="::module.enseignements.length">
+                            <tbody>
+                            <tr data-ng-repeat="enseignement in ::module.enseignements track by enseignement.id">
+                                <td>{{ enseignement.forme }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-success">
+                                            <span class="glyphicon glyphicon-plus-signe"></span>
+                                            <span class="sr-only">Faire un voeux</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </accordion-group>
+                </accordion>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>

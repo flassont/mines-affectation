@@ -107,6 +107,9 @@
 		this.defaults = {
 			/** Default items in the menu */
 			items: [{
+				template: 'Voeux',
+				route: 'wish'
+			},{
 				template: 'UVs',
 				route: 'uv.list'
 				// TODO Add an element for which route to considered and add a directive for comparison
