@@ -41,11 +41,29 @@ public class UtilisateurService {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         try {
-            utilisateurDAO.addUtilisateur(utilisateur);
+            utilisateurDAO.register(utilisateur);
             URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(utilisateur.getId())).build();
             return Response.created(uri).build();
         } catch (ConstraintViolationException cve) {
             return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    }
+
+    @PUT
+    @Path("{id}")
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.APPLICATION_JSON )
+    public Response updateUv(Utilisateur utilisateur) {
+        if(utilisateur == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        try {
+            utilisateurDAO.update(utilisateur);
+            return Response.ok(utilisateur).build();
+        } catch(ConstraintViolationException cve) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        } catch(Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
