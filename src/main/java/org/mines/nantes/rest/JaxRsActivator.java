@@ -1,5 +1,6 @@
 package org.mines.nantes.rest;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
@@ -31,7 +32,8 @@ public class JaxRsActivator extends Application {
 		public HibernateLoader() {
 			defaultObjectMapper = new ObjectMapper();
 
-			Hibernate4Module hibernate4Module = new Hibernate4Module(HibernateUtil.getSessionFactory());
+			Hibernate4Module hibernate4Module = new Hibernate4Module();
+			hibernate4Module.disable(Hibernate4Module.Feature.FORCE_LAZY_LOADING);
 
 			defaultObjectMapper.registerModule(hibernate4Module);
 
