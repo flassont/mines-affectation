@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 
 /**
- * Wish emited by a Utilisateur for a Module
+ * Enseignement which is assigned to one Utilisateur for one year
  * Created by Florian on 29/05/2015.
  */
 @Entity

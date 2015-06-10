@@ -35,7 +35,8 @@ public class Module {
 	@ManyToOne
 	private Uv uv;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,
+				mappedBy = "module")
 	private Set<Enseignement> enseignements;
 
 	public int getId() {
