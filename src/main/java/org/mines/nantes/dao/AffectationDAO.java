@@ -1,6 +1,7 @@
 package org.mines.nantes.dao;
 
 import org.mines.nantes.model.Affectation;
+import org.mines.nantes.model.Affectation_;
 import org.mines.nantes.model.Uv;
 import org.mines.nantes.model.Wish;
 
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import java.util.Collection;
 
@@ -25,6 +27,8 @@ public class AffectationDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Affectation> criteria = cb.createQuery(Affectation.class);
         Root<Affectation> affectation = criteria.from(Affectation.class);
+        affectation.fetch(Affectation_.enseignement, JoinType.LEFT);
+        affectation.fetch(Affectation_.intervenant,JoinType.LEFT);
         criteria.select(affectation);
         return entityManager.createQuery(criteria).getResultList();
     }
