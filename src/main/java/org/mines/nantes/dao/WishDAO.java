@@ -23,7 +23,7 @@ public class WishDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Wish> criteria = cb.createQuery(Wish.class);
         Root<Wish> wish = criteria.from(Wish.class);
-        criteria.select(wish);
+        criteria.select(wish).distinct(true);
         return entityManager.createQuery(criteria).getResultList();
     }
 

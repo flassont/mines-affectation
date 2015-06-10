@@ -25,7 +25,7 @@ public class UtilisateurDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Utilisateur> criteria = cb.createQuery(Utilisateur.class);
         Root<Utilisateur> Utilisateur = criteria.from(Utilisateur.class);
-        criteria.select(Utilisateur);
+        criteria.select(Utilisateur).distinct(true);
         return entityManager.createQuery(criteria).getResultList();
 
     }

@@ -22,7 +22,7 @@ public class AuthentificationDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Utilisateur> criteria = cb.createQuery(Utilisateur.class);
         Root<Utilisateur> member = criteria.from(Utilisateur.class);
-        criteria.select(member).where(cb.equal(member.get("email"), login));
+        criteria.select(member).distinct(true).where(cb.equal(member.get("email"), login));
 
         List<Utilisateur> result = entityManager.createQuery(criteria)
                 .setMaxResults(1)
