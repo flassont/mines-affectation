@@ -38,6 +38,9 @@ public class Enseignement {
 	@OneToMany(mappedBy = "enseignement")
 	private Set<Affectation> affectations;
 
+	@ManyToOne
+	private Module module;
+
 	public int getId() {
 		return id;
 	}
@@ -84,5 +87,13 @@ public class Enseignement {
 
 	public void setAffectations(Set<Affectation> affectations) {
 		this.affectations = affectations;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
 	}
 }
