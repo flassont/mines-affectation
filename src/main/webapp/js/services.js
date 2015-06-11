@@ -19,6 +19,7 @@
 		}
 	console.log(affectationResource.save);
 		AffectationFactory.getAll = affectationResource.getList;
+		AffectationFactory.select = Restangular.one.bind(AffectationFactory, 'affectation');
 		AffectationFactory.get = affectationResource.get;
 		AffectationFactory.create = affectationResource.post;
 		AffectationFactory.delete = affectationResource.remove;
@@ -142,6 +143,7 @@
 		}
 
 		WishFactory.getAll = wishResource.getList;
+		WishFactory.select = Restangular.one.bind(WishFactory, 'wish');
 		WishFactory.get = wishResource.get;
 		WishFactory.save = wishResource.save;
 		WishFactory.delete = wishResource.remove;

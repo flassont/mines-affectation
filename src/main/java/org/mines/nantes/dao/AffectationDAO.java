@@ -41,7 +41,7 @@ public class AffectationDAO {
         entityManager.merge(affectation);
     }
 
-    public void delete(String id) throws Exception {
+    public void delete(int id) throws Exception {
         Affectation affectation = entityManager.find(Affectation.class,id);
         entityManager.remove(affectation);
     }

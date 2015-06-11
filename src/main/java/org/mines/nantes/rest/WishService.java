@@ -52,8 +52,7 @@ public class WishService {
 
     @DELETE
     @Path("{id}")
-    @Consumes( MediaType.APPLICATION_JSON )
-    @Produces( MediaType.TEXT_PLAIN )
+    @Consumes(MediaType.WILDCARD)
     public Response deleteWish(@PathParam("id") int id) {
         if(id == 0) {
             return Response.status(Response.Status.BAD_REQUEST).build();

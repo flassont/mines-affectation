@@ -35,7 +35,7 @@ public class AffectationService {
 
     @POST
     @Consumes( MediaType.APPLICATION_JSON )
-    @Produces( MediaType.TEXT_PLAIN )
+    @Produces( MediaType.APPLICATION_JSON )
     public Response createAffectation(Affectation affectation) {
         if(affectation == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -43,7 +43,7 @@ public class AffectationService {
         try {
             affectationDAO.register(affectation);
             URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(affectation.getId())).build();
-            return Response.created(uri).build();
+            return Response.created(uri).entity(affectation).build();
         } catch (ConstraintViolationException cve) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -64,6 +64,18 @@ public class AffectationService {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } catch(Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Consumes(MediaType.WILDCARD)
+    public Response deleteAffectation(@PathParam("id") int id) {
+        try {
+            affectationDAO.delete(id);
+            return Response.ok().build();
+        } catch (Exception e) {
+            return Response.serverError().build();
         }
     }
 }

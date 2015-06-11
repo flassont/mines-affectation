@@ -32,33 +32,29 @@
 			affectation.enseignement = wish.enseignement;
 			affectation.intervenant = wish.intervenant;
 
-			console.log(JSON.stringify(affectation));
-
-			AffectationProvider.create(affectation).then(function() {
+			AffectationProvider.create(affectation).then(function(newAffectation) {
 				enseignement.affectations = enseignement.affectations || [];
 				//We assume wish stays the same
-				enseignement.affectations.push(affectation);
-				return WishProvider.delete(wish);
+				enseignement.affectations.push(newAffectation);
+				return WishProvider.select(wish.id).remove();
 			}).then(function () {
 				var index = $scope.wishs.indexOf(wish);
 				if(index > -1) {
-					$scope.array.splice(index, 1);
+					$scope.wishs.splice(index, 1);
 				}
 			});
 		};
 
 		$scope.rejectWish = function(wish) {
-			WishProvider.delete(wish).then(function() {
-
-			})
+			return WishProvider.select(wish.id).remove();
 		};
 
 		$scope.rejectAffectation = function (affectation) {
-			AffectationProvider.delete(affectation).then(function() {
-				var affectation = $scope.enseignement.affectation;
-				var index = affectation.indexOf(affectation);
+			AffectationProvider.select(affectation.id).remove().then(function() {
+				$scope.enseignement.affectations;
+				var index = $scope.enseignement.affectations.indexOf(affectation);
 				if(index > -1) {
-					affectation.splice(index, 1);
+					$scope.enseignement.affectations.splice(index, 1);
 				}
 			});
 		}
