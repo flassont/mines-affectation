@@ -36,7 +36,7 @@ public class WishDAO {
         entityManager.merge(wish);
     }
 
-    public void delete(String id) throws Exception {
+    public void delete(int id) throws Exception {
         Wish wish = entityManager.find(Wish.class,id);
         entityManager.remove(wish);
     }
