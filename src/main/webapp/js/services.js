@@ -45,7 +45,7 @@
 
 		UserFactory.getAll = userResource.getList;
 		UserFactory.get = userResource.get;
-		UserFactory.save = userResource.save;
+		UserFactory.save = userResource.post;
 		UserFactory.delete= userResource.delete;
 
 		return UserFactory;

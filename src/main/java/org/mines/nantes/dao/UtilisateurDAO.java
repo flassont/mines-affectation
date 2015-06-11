@@ -4,6 +4,7 @@ import org.mines.nantes.model.Affectation;
 import org.mines.nantes.model.Module;
 import org.mines.nantes.model.Utilisateur;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by Alex Gourbiliere on 04/06/2015.
  */
+@Stateless
 public class UtilisateurDAO {
     @Inject
     EntityManager entityManager;

@@ -10,7 +10,8 @@ insert into module (id,datedebut,datefin,nom,uv_id) VALUES (702,'01/01/2016','31
 insert into enseignement (id, forme, nbgroupes, nbheures, module_id,up) VALUES (700, 'COURS', 1, 20, 701,23)
 insert into enseignement (id, forme, nbgroupes, nbheures, module_id,up) VALUES (701, 'TP', 5, 25, 701,24)
 
-insert into utilisateur(id, firstname, lastname, email, password, admin) VALUES (700, 'Alex', 'GOURBILIERE', 'alex.gourbi@gmail.com', 'gourbi', true)
+insert into utilisateur(id, firstname, lastname, email, password, admin) VALUES (700, 'Maxime', 'CLAVEAU', 'maxime.claveau@etudiant.mines-nantes.fr', 'test', false)
+insert into utilisateur(id, firstname, lastname, email, password, admin) VALUES (702, 'Alex', 'GOURBILIERE', 'alex.gourbi@gmail.com', 'gourbi', true)
 insert into utilisateur(id, firstname, lastname, email, password, admin) VALUES (701, 'Florian', 'LASSONT', 'florian.lassont@etudiant.mines-nantes.fr', 'test', false)
 
 insert into affectation(id, year, intervenant_id, enseignement_id, nbgroupes) VALUES (1, 2015, 700, 700, 1)

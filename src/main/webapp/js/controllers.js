@@ -25,6 +25,18 @@
 	 */
 	app.controller('emn.controller.userCtrl', ['$scope', '$modal', 'emn.model.user', 'users', function($scope, $modal, UserModel, users) {
 		$scope.users = users;
+        $scope.createUser = function() {
+            var modalInstance = $modal.open({
+                templateUrl: 'user-add.html',
+                controller: 'emn.controller.userCtrl.createUserCtrl'
+            });
+
+            modalInstance.result.then(function (user) {
+                return UserModel.save(user).then(function() {
+                    $scope.users.push(user);
+                });
+            }, console.log.bind(console));
+        };
 	}]);
 
     /**
@@ -129,6 +141,59 @@
                 required: true
             }
         }];
+    }]);
+
+    app.controller('emn.controller.userCtrl.createUserCtrl', ['$scope', '$modalInstance', 'emn.model.user', function($scope, $modalInstance, userModel) {
+        $scope.model = new userModel();
+
+        $scope.ok = function() {
+            $modalInstance.close($scope.model);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('Cancelled');
+        };
+
+        $scope.fields = [{
+            key: 'lastName',
+            type: 'input',
+            templateOptions: {
+                type: 'text',
+                label: 'Nom',
+                placeholder: 'Nom de l\'utilisateur',
+                required: true
+            }
+        },
+            {
+                key: 'firstName',
+                type: 'input',
+                templateOptions: {
+                    type: 'text',
+                    label: 'Prénom',
+                    placeholder: 'Prénom de l\'utilisateur',
+                    required: true
+                }
+            },
+            {
+                key: 'email',
+                type: 'input',
+                templateOptions: {
+                    type: 'mail',
+                    label: 'Mail',
+                    placeholder: 'Mail de l\'utilisateur',
+                    required: true
+                }
+            },
+            {
+                key: 'password',
+                type: 'input',
+                templateOptions: {
+                    type: 'password',
+                    label: 'Password',
+                    placeholder: 'Mot de passe de l\'utilisateur',
+                    required: true
+                }
+            }];
     }]);
 
 	app.controller('emn.controller.wishCtrl', ['$scope', 'emn.service.auth', 'emn.model.wish', 'uvs', function($scope, AuthService, WishProvider, uvs) {
