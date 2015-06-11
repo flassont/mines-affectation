@@ -38,6 +38,8 @@ public class Enseignement {
 	@OneToMany(mappedBy = "enseignement")
 	private Set<Affectation> affectations;
 
+	private double up;
+
 	@ManyToOne
 	private Module module;
 
@@ -95,5 +97,13 @@ public class Enseignement {
 
 	public void setModule(Module module) {
 		this.module = module;
+	}
+
+	public double getUp() {
+		return up;
+	}
+
+	public void setUp(double up) {
+		this.up = up;
 	}
 }

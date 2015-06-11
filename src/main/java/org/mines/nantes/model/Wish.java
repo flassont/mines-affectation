@@ -40,6 +40,8 @@ public class Wish {
 
 	private Boolean affecte;
 
+	private String Commentaire;
+
 	public int getId() {
 		return id;
 	}
@@ -86,5 +88,13 @@ public class Wish {
 
 	public void setAffecte(Boolean affecte) {
 		this.affecte = affecte;
+	}
+
+	public String getCommentaire() {
+		return Commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		Commentaire = commentaire;
 	}
 }
