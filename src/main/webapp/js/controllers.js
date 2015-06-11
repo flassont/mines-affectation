@@ -37,31 +37,50 @@
 				//We assume wish stays the same
 				enseignement.affectations.push(newAffectation);
 				return WishProvider.select(wish.id).remove();
-			}).then(function () {
-				var index = $scope.wishs.indexOf(wish);
-				if(index > -1) {
-					$scope.wishs.splice(index, 1);
-				}
+			}).then(function() {
+				removeWish(wish);
 			});
 		};
 
 		$scope.rejectWish = function(wish) {
-			return WishProvider.select(wish.id).remove();
+			return WishProvider.select(wish.id).remove().then(function()  {
+				removeWish(wish);
+			});
 		};
 
 		$scope.rejectAffectation = function (affectation) {
 			AffectationProvider.select(affectation.id).remove().then(function() {
-				$scope.enseignement.affectations;
 				var index = $scope.enseignement.affectations.indexOf(affectation);
 				if(index > -1) {
 					$scope.enseignement.affectations.splice(index, 1);
 				}
 			});
+		};
+
+		function removeWish(wish) {
+			var index = $scope.wishs.indexOf(wish);
+			if(index > -1) {
+				$scope.wishs.splice(index, 1);
+			}
+
 		}
 	}]);
 
-	app.controller('emn.controller.affectationCtrl.userCtrl', ['$scope', 'enseignement', function($scope, WishProvider, AffectationProvider, enseignement) {
+	app.controller('emn.controller.affectationCtrl.userCtrl', ['$scope', 'Restangular','emn.service.auth','emn.model.wish', 'enseignement', function($scope, Restangular, AuthService, WishProvider, enseignement) {
 		$scope.enseignement = enseignement;
+		console.log(enseignement);
+		$scope.subscribing = 0;
+		$scope.subscribe = function () {
+			$scope.subscribing++;
+			var wish = WishProvider();
+			wish.nbGroupes = 1;
+			wish.year = new Date().getFullYear();
+			wish.intervenant = AuthService.user;
+			wish.enseignement = enseignement.plain();
+			WishProvider.save(wish).then(function() {
+				$scope.subscribing--;
+			})
+		}
 	}]);
 
 	/**

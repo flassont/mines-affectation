@@ -145,7 +145,7 @@
 		WishFactory.getAll = wishResource.getList;
 		WishFactory.select = Restangular.one.bind(WishFactory, 'wish');
 		WishFactory.get = wishResource.get;
-		WishFactory.save = wishResource.save;
+		WishFactory.save = wishResource.post;
 		WishFactory.delete = wishResource.remove;
 
 		return WishFactory
@@ -157,17 +157,18 @@
 	 */
 	app.factory('emn.service.auth', [function() {
 		var user = {
-			isAdmin: true,
+			id: 702,
+			admin: true,
 			email: 'paul.dupont@mines-nantes.fr',
 			firstName: 'Paul',
-			lastName: 'DUPONT',
-			token: '0000000000000000'
+			lastName: 'DUPONT'
 		};
 
 		return {
 			get user() {
 				return user;
-			}
+			},
+			token : '00000000'
 		};
 	}]);
 
