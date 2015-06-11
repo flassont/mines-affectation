@@ -2,6 +2,31 @@
 	'use strict';
 
 	/**
+	 * Affectation modle
+	 */
+	app.factory('emn.model.affectation', ['Restangular', function(Restangular) {
+		var affectationResource = Restangular.all('affectation');
+
+		function AffectationFactory() {
+			return new AffectationModel();
+		}
+
+		function AffectationModel() {
+			this.id = null;
+			this.year = Date.now();
+			this.intervenant = null;
+			this.enseignement = null;
+		}
+	console.log(affectationResource.save);
+		AffectationFactory.getAll = affectationResource.getList;
+		AffectationFactory.get = affectationResource.get;
+		AffectationFactory.create = affectationResource.post;
+		AffectationFactory.delete = affectationResource.remove;
+
+		return AffectationFactory
+	}]);
+
+	/**
 	 * Enseignement model
 	 */
 	app.factory('emn.model.enseignement', ['Restangular', function(Restangular) {
@@ -19,7 +44,7 @@
 
 		EnseignementFactory.getAll = enseignementResource.getList;
 		EnseignementFactory.get = enseignementResource.get;
-		EnseignementFactory.save = enseignementResource.save;
+		EnseignementFactory.create = enseignementResource.post;
 		EnseignementFactory.delete= enseignementResource.delete;
 
 		return EnseignementFactory;

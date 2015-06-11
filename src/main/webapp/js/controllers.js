@@ -1,22 +1,70 @@
 (function(app) {
     'use strict';
 
-	app.controller('emn.controller.affectationCtrl', ['$scope', '$state', 'wishs', function($scope, $state, wishs) {
+	app.controller('emn.controller.affectationCtrl', ['$scope', '$state', 'currentState', 'wishs', function($scope, $state, currentState, wishs) {
 		$scope.wishs = wishs;
-		$scope.go = function(enseignement) {
-			var toState = '';
-			toState = $state.is('affectation') ? 'affectation.module' : 'wish.module';
-			$state.go(toState, {
+
+		$scope.go =  function(enseignement) {
+			// Go to 'module' child state of state defined as currentState
+			// The currentState must be used because reaching '.module'
+			// from *.module throws an error (ie the state is not related
+			// to the controller)
+			$state.go('.module', {
 				enseignementId: enseignement.id
+			}, {
+				relative: currentState
+			});
+		};
+	}]);
+
+	app.controller('emn.controller.affectationCtrl.moduleCtrl', ['$scope', 'Restangular', 'emn.model.wish', 'emn.model.affectation', 'enseignement', function($scope, Restangular, WishProvider, AffectationProvider, enseignement) {
+		$scope.enseignement = enseignement;
+
+		/**
+		 * Transform the Wish into Affectation
+		 * @param wish
+		 */
+		$scope.acceptWish = function(wish) {
+			// Deleting wish is done only once the affectation is succeeded
+			var affectation = new AffectationProvider();
+			affectation.year = wish.year;
+			affectation.nbGroupes = wish.nbGroupes;
+			affectation.enseignement = wish.enseignement;
+			affectation.intervenant = wish.intervenant;
+
+			console.log(JSON.stringify(affectation));
+
+			AffectationProvider.create(affectation).then(function() {
+				enseignement.affectations = enseignement.affectations || [];
+				//We assume wish stays the same
+				enseignement.affectations.push(affectation);
+				return WishProvider.delete(wish);
+			}).then(function () {
+				var index = $scope.wishs.indexOf(wish);
+				if(index > -1) {
+					$scope.array.splice(index, 1);
+				}
+			});
+		};
+
+		$scope.rejectWish = function(wish) {
+			WishProvider.delete(wish).then(function() {
+
+			})
+		};
+
+		$scope.rejectAffectation = function (affectation) {
+			AffectationProvider.delete(affectation).then(function() {
+				var affectation = $scope.enseignement.affectation;
+				var index = affectation.indexOf(affectation);
+				if(index > -1) {
+					affectation.splice(index, 1);
+				}
 			});
 		}
 	}]);
 
-	app.controller('emn.controller.affectationCtrl.moduleCtrl', ['$scope', 'enseignement', function($scope, enseignement) {
-		$scope.enseignement = enseignement;
-	}]);
-
-	app.controller('emn.controller.affectationCtrl.wishCtrl', ['$scope', 'enseignement', function($scope, enseignement) {
+	app.controller('emn.controller.affectationCtrl.userCtrl', ['$scope', 'enseignement', function($scope, WishProvider, AffectationProvider, enseignement) {
 		$scope.enseignement = enseignement;
 	}]);
 

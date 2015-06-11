@@ -24,6 +24,7 @@ public class EnseignementDAO {
 		CriteriaQuery<Enseignement> criteria = cb.createQuery(Enseignement.class);
 		Root<Enseignement> enseignement = criteria.from(Enseignement.class);
 		enseignement.fetch(Enseignement_.wishs, JoinType.LEFT);
+		enseignement.fetch(Enseignement_.affectations, JoinType.LEFT);
 		criteria.select(enseignement).distinct(true).where(cb.equal(enseignement.get("id"), id));
 
 		// getSingleResult() throws NoResultException if no result

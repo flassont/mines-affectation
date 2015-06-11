@@ -23,11 +23,11 @@
                 <td>{{wish.nbGroupes}}</td>
                 <td>
                     <div class="btn-group">
-                        <button class="btn btn-success" data-ng-click="acceptWish()">
+                        <button class="btn btn-success" data-ng-click="acceptWish(wish)">
                             <span class="glyphicon glyphicon-ok"></span>
                             <span class="sr-only">Accepter</span>
                         </button>
-                        <button class="btn btn-danger" data-ng-click="rejectWish()">
+                        <button class="btn btn-danger" data-ng-click="rejectWish(wish)">
                             <span class="glyphicon glyphicon-remove"></span>
                             <span class="sr-only">Rejeter</span>
                         </button>
@@ -42,10 +42,10 @@
     <div class="panel-heading">
         <h3 class="panel-title">Affectations</h3>
     </div>
-    <div class="panel-body" data-ng-hide="affectations.length">
+    <div class="panel-body" data-ng-hide="enseignement.affectations.length">
         <p>Aucun intervenant n'a été affecté</p>
     </div>
-    <table class="table table-stripped" data-ng-show="affectations.length">
+    <table class="table table-stripped" data-ng-show="enseignement.affectations.length">
         <thead>
         <tr>
             <th>Enseignant</th>
@@ -54,12 +54,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="affectation in affectations track by affectation.id">
-            <td>{{wish.intervenant.firstName}} {{wish.intervenant.lastName}}</td>
-            <td>{{wish.nbGroupes}}</td>
+        <tr data-ng-repeat="affectation in enseignement.affectations track by affectation.id">
+            <td>{{affectation.intervenant.firstName}} {{affectation.intervenant.lastName}}</td>
+            <td>{{affectation.nbGroupes}}</td>
             <td>
                 <div class="btn-group">
-                    <button class="btn btn-danger" data-ng-click="rejectAffectation()">
+                    <button class="btn btn-danger" data-ng-click="rejectAffectation(affectation)">
                         <span class="glyphicon glyphicon-remove"></span>
                         <span class="sr-only">Retirer</span>
                     </button>

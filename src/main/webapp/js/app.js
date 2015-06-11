@@ -50,6 +50,9 @@
 			resolve: {
 				wishs: ['emn.model.wish', function(WishProvider) {
 					return WishProvider.getAll();
+				}],
+				currentState: [function() {
+					return 'wish';
 				}]
 			}
 		}).state('wish.module', {
@@ -68,6 +71,9 @@
 			resolve: {
 				wishs: ['emn.model.wish', function(WishProvider) {
 					return WishProvider.getAll();
+				}],
+				currentState: [function() {
+					return 'affectation';
 				}]
 			}
 		}).state('affectation.module', {
