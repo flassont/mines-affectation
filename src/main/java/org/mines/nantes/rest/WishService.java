@@ -49,4 +49,24 @@ public class WishService {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
+
+    @DELETE
+    @Path("{id}")
+    @Consumes( MediaType.APPLICATION_JSON )
+    @Produces( MediaType.TEXT_PLAIN )
+    public Response deleteWish(@PathParam("id") int id) {
+        if(id == 0) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        try {
+            wishDAO.delete(id);
+            URI uri = uriInfo.getAbsolutePathBuilder().path(Integer.toString(id)).build();
+            return Response.created(uri).build();
+        } catch (ConstraintViolationException cve) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    }
+
 }
