@@ -55,7 +55,7 @@
 		}).state('wish.module', {
 			url: '/{enseignementId:int}',
 			templateUrl: 'partials/affectation.user.html',
-			controller: 'emn.controller.affectationCtrl.moduleCtrl',
+			controller: 'emn.controller.affectationCtrl.userCtrl',
 			resolve: {
 				enseignement: ['$stateParams', 'emn.model.enseignement', function($stateParams, EnseignementProvider) {
 					return EnseignementProvider.get($stateParams.enseignementId);

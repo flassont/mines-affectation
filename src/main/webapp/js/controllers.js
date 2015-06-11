@@ -4,7 +4,9 @@
 	app.controller('emn.controller.affectationCtrl', ['$scope', '$state', 'wishs', function($scope, $state, wishs) {
 		$scope.wishs = wishs;
 		$scope.go = function(enseignement) {
-			$state.go('affectation.module', {
+			var toState = '';
+			toState = $state.is('affectation') ? 'affectation.module' : 'wish.module';
+			$state.go(toState, {
 				enseignementId: enseignement.id
 			});
 		}
@@ -12,7 +14,10 @@
 
 	app.controller('emn.controller.affectationCtrl.moduleCtrl', ['$scope', 'enseignement', function($scope, enseignement) {
 		$scope.enseignement = enseignement;
-		console.log(enseignement)
+	}]);
+
+	app.controller('emn.controller.affectationCtrl.wishCtrl', ['$scope', 'enseignement', function($scope, enseignement) {
+		$scope.enseignement = enseignement;
 	}]);
 
 	/**
